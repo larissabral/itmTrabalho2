@@ -10,3 +10,6 @@ tmp/
 
 # Variáveis de ambiente
 .env
+
+# Cache de teste
+__pycache__/

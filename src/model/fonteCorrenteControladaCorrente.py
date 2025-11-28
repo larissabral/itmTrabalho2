@@ -1,4 +1,7 @@
-class FonteCorrenteControladaCorrente:
+from src.model.elementoCircuito import ElementoCircuito
+
+
+class FonteCorrenteControladaCorrente(ElementoCircuito):
     def __init__(
         self,
         noCorrentePositivo,
@@ -7,6 +10,7 @@ class FonteCorrenteControladaCorrente:
         noControleNegativo,
         ganhoCorrente,
     ):
+        super().__init__(noCorrentePositivo, noCorrenteNegativo)
         self.noCorrentePositivo = noCorrentePositivo
         self.noCorrenteNegativo = noCorrenteNegativo
         self.noControlePositivo = noControlePositivo
@@ -29,3 +33,19 @@ class FonteCorrenteControladaCorrente:
         self.noControlePositivo = int(nl[3])
         self.noControleNegativo = int(nl[4])
         self.ganhoCorrente = int(nl[5])
+
+    def estampa(
+        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+    ):
+        noA = self.noCorrentePositivo
+        noB = self.noCorrenteNegativo
+        noC = self.noControlePositivo
+        noD = self.noControleNegativo
+        ix = qntNos + posicao
+
+        G[noA, ix] += self.ganhoCorrente
+        G[noB, ix] -= self.ganhoCorrente
+        G[noC, ix] += 1
+        G[noD, ix] -= 1
+        G[ix, noC] -= 1
+        G[ix, noD] += 1

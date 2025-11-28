@@ -2,17 +2,23 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class Resistor(ElementoCircuito):
-    def __init__(self, resistencia, noPositivo, noNegativo):
-        super().__init__(noPositivo, noNegativo)
+    def __init__(self, nome, resistencia, noPositivo, noNegativo):
+        super().__init__(nome, noPositivo, noNegativo)
         self.resistencia = resistencia
 
     def to_nl(self):
-        return ["R", self.noPositivo, self.noNegativo, self.resistencia]
+        return [
+            self.nome,
+            self.noPositivo,
+            self.noNegativo,
+            self.resistencia,
+        ]  # nome: R
 
     def from_nl(self, nl):
-        self.resistencia = float(nl[3])
+        self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
+        self.resistencia = float(nl[3])
 
     def estampa(
         self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

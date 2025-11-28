@@ -4,6 +4,7 @@ from src.model.elementoCircuito import ElementoCircuito
 class Mosfet(ElementoCircuito):
     def __init__(
         self,
+        nome,
         dreno,
         porta,
         fonte,
@@ -16,7 +17,7 @@ class Mosfet(ElementoCircuito):
         noPositivo,
         noNegativo,
     ):
-        super().__init__(noPositivo, noNegativo)
+        super().__init__(nome, noPositivo, noNegativo)
         self.dreno = dreno
         self.porta = porta
         self.fonte = fonte
@@ -29,7 +30,7 @@ class Mosfet(ElementoCircuito):
 
     def to_nl(self):
         return [
-            "M",
+            self.nome,  # nome: M
             self.dreno,
             self.porta,
             self.fonte,
@@ -42,6 +43,7 @@ class Mosfet(ElementoCircuito):
         ]
 
     def from_nl(self, nl):
+        self.nome = nl[0]
         self.dreno = int(nl[1])
         self.porta = int(nl[2])
         self.fonte = int(nl[3])

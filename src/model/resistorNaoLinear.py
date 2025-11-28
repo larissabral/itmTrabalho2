@@ -4,8 +4,8 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class ResistorNaoLinear(ElementoCircuito):
-    def __init__(self, noPositivo, noNegativo, v1, v2, v3, v4, i1, i2, i3, i4):
-        super().__init__(noPositivo, noNegativo)
+    def __init__(self, nome, noPositivo, noNegativo, v1, v2, v3, v4, i1, i2, i3, i4):
+        super().__init__(nome, noPositivo, noNegativo)
         self.v1 = v1
         self.v2 = v2
         self.v3 = v3
@@ -17,7 +17,7 @@ class ResistorNaoLinear(ElementoCircuito):
 
     def to_nl(self):
         return [
-            "N",
+            self.nome,  # nome: N
             self.noPositivo,
             self.noNegativo,
             self.v1,
@@ -31,6 +31,7 @@ class ResistorNaoLinear(ElementoCircuito):
         ]
 
     def from_nl(self, nl):
+        self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
         self.v1 = float(nl[3])

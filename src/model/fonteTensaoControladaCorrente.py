@@ -4,13 +4,14 @@ from src.model.elementoCircuito import ElementoCircuito
 class FonteTensaoControladaCorrente(ElementoCircuito):
     def __init__(
         self,
+        nome,
         noTensaoPositivo,
         noTensaoNegativo,
         noControlePositivo,
         noControleNegativo,
         transresistencia,
     ):
-        super().__init__(noTensaoPositivo, noTensaoNegativo)
+        super().__init__(nome, noTensaoPositivo, noTensaoNegativo)
         self.noTensaoPositivo = noTensaoPositivo
         self.noTensaoNegativo = noTensaoNegativo
         self.noControlePositivo = noControlePositivo
@@ -19,7 +20,7 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
 
     def to_nl(self):
         return [
-            "H",
+            self.nome,  # nome: H
             self.noTensaoPositivo,
             self.noTensaoNegativo,
             self.noControlePositivo,
@@ -28,6 +29,7 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
         ]
 
     def from_nl(self, nl):
+        self.nome = nl[0]
         self.noTensaoPositivo = int(nl[1])
         self.noTensaoNegativo = int(nl[2])
         self.noControlePositivo = int(nl[3])

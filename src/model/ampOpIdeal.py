@@ -2,14 +2,15 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class AmpOpIdeal(ElementoCircuito):
-    def __init__(self, noPositivo, noNegativo, noSaida):
-        super().__init__(noPositivo, noNegativo)
+    def __init__(self, nome, noPositivo, noNegativo, noSaida):
+        super().__init__(nome, noPositivo, noNegativo)
         self.noSaida = noSaida
 
     def to_nl(self):
-        return ["O", self.noPositivo, self.noNegativo, self.noSaida]
+        return [self.nome, self.noPositivo, self.noNegativo, self.noSaida]  # nome: O
 
     def from_nl(self, nl):
+        self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
         self.noSaida = int(nl[3])

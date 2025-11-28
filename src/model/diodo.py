@@ -4,13 +4,14 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class Diodo(ElementoCircuito):
-    def __init__(self, noPositivo, noNegativo):
-        super().__init__(noPositivo, noNegativo)
+    def __init__(self, nome, noPositivo, noNegativo):
+        super().__init__(nome, noPositivo, noNegativo)
 
     def to_nl(self):
-        return ["D", self.noPositivo, self.noNegativo]
+        return [self.nome, self.noPositivo, self.noNegativo]  # nome: D
 
     def from_nl(self, nl):
+        self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
 

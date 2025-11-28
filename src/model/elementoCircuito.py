@@ -27,12 +27,12 @@ class ElementoCircuito(ABC):
 
     @abstractmethod
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         """
 
         - G: matriz de condutâncias
-        - I: vetor de correntes
+        - Ix: vetor de correntes
         - deltaT: passo de integração
 
         """

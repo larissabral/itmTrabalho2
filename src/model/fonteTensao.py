@@ -27,7 +27,7 @@ class FonteTensao(ElementoCircuito):
         self.parametros = nl[4:]
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         tensao = 0
         noA = self.noPositivo
@@ -98,4 +98,4 @@ class FonteTensao(ElementoCircuito):
         G[noB, qntNos + posicao] -= 1
         G[qntNos + posicao, noB] += 1
 
-        I[qntNos + posicao] -= tensao
+        Ix[qntNos + posicao] -= tensao

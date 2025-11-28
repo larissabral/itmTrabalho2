@@ -17,7 +17,7 @@ class FonteCorrente(ElementoCircuito):
             self.noNegativo,
             self.tipoFonte,
             self.parametros,
-        ]  # nome: I
+        ]  # nome: Ix
 
     def from_nl(self, nl):
         self.nome = nl[0]
@@ -27,7 +27,7 @@ class FonteCorrente(ElementoCircuito):
         self.parametros = nl[4:]
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo
@@ -91,5 +91,5 @@ class FonteCorrente(ElementoCircuito):
             else:
                 corrente = valor1
 
-        I[noA] -= corrente
-        I[noB] += corrente
+        Ix[noA] -= corrente
+        Ix[noB] += corrente

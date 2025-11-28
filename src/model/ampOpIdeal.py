@@ -16,7 +16,7 @@ class AmpOpIdeal(ElementoCircuito):
         self.noSaida = int(nl[3])
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo

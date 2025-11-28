@@ -44,7 +44,7 @@ class ResistorNaoLinear(ElementoCircuito):
         self.i4 = float(nl[10])
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo
@@ -75,5 +75,5 @@ class ResistorNaoLinear(ElementoCircuito):
         G[noB, noA] -= resistencia
         G[noB, noB] += resistencia
 
-        I[noA] += I0
-        I[noB] -= I0
+        Ix[noA] += I0
+        Ix[noB] -= I0

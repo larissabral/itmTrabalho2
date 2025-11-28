@@ -24,7 +24,7 @@ class Capacitor(ElementoCircuito):
         self.tensaoInicial = float(nl[4].replace("IC=", ""))
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo
@@ -38,5 +38,5 @@ class Capacitor(ElementoCircuito):
         G[noB, noA] -= capacitancia_equivalente
         G[noB, noB] += capacitancia_equivalente
 
-        I[noA] += corrente
-        I[noB] -= corrente
+        Ix[noA] += corrente
+        Ix[noB] -= corrente

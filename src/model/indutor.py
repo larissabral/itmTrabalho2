@@ -24,7 +24,7 @@ class Indutor(ElementoCircuito):
         self.correnteInicial = float(nl[4].replace("IC=", ""))
 
     def estampa(
-        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+        self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo
@@ -38,4 +38,4 @@ class Indutor(ElementoCircuito):
         G[posicao, posicao] += indutancia_equivalente
 
         i_t0 = correntesAnteriores[posicao - qntNos] * indutancia_equivalente
-        I[posicao] += i_t0
+        Ix[posicao] += i_t0

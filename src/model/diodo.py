@@ -14,7 +14,9 @@ class Diodo(ElementoCircuito):
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
 
-    def estampa(self, G, I, deltaT, tensoesAnteriores, correntesAnteriores):
+    def estampa(
+        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+    ):
         noA = self.noPositivo
         noB = self.noNegativo
 

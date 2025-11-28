@@ -52,5 +52,7 @@ class Mosfet(ElementoCircuito):
         self.K = int(nl[8])
         self.tensaoThevenin = int(nl[9])
 
-    def estampa(self, G, I, deltaT, tensoesAnteriores, correntesAnteriores):
+    def estampa(
+        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+    ):
         raise NotImplementedError

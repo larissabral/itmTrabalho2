@@ -7,7 +7,9 @@ class ElementoCircuito(ABC):
         self.noNegativo = noNegativo
 
     @abstractmethod
-    def estampa(self, G, I, deltaT, tensoesAnteriores, correntesAnteriores):
+    def estampa(
+        self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
+    ):
         """
 
         - G: matriz de condutâncias

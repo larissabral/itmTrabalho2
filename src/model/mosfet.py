@@ -1,5 +1,22 @@
-class Mosfet:
-    def __init__(self, dreno, porta, fonte, tipoCanal, W, L, y, K, tensaoThevenin):
+from src.model.elementoCircuito import ElementoCircuito
+
+
+class Mosfet(ElementoCircuito):
+    def __init__(
+        self,
+        dreno,
+        porta,
+        fonte,
+        tipoCanal,
+        W,
+        L,
+        y,
+        K,
+        tensaoThevenin,
+        noPositivo,
+        noNegativo,
+    ):
+        super().__init__(noPositivo, noNegativo)
         self.dreno = dreno
         self.porta = porta
         self.fonte = fonte
@@ -34,3 +51,6 @@ class Mosfet:
         self.y = int(nl[7])
         self.K = int(nl[8])
         self.tensaoThevenin = int(nl[9])
+
+    def estampa(self, G, I, deltaT, tensoesAnteriores, correntesAnteriores):
+        raise NotImplementedError

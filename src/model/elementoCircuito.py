@@ -7,6 +7,24 @@ class ElementoCircuito(ABC):
         self.noNegativo = noNegativo
 
     @abstractmethod
+    def to_nl(self):
+        """
+
+        Transforma componente em linha de netlist
+
+        """
+        pass
+
+    @abstractmethod
+    def from_nl(self, nl):
+        """
+
+        Recupera componente a partir da netlist
+
+        """
+        pass
+
+    @abstractmethod
     def estampa(
         self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):

@@ -17,5 +17,11 @@ class AmpOpIdeal(ElementoCircuito):
     def estampa(
         self, G, I, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
-        # TODO: implementar estampa do ampop
-        raise NotImplementedError
+        noA = self.noPositivo
+        noB = self.noNegativo
+        noC = self.noSaida
+
+        G[0][posicao] -= 1
+        G[noC][posicao] += 1
+        G[posicao][noA] -= 1
+        G[posicao][noB] += 1

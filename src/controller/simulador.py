@@ -1,5 +1,3 @@
-import numpy as np
-
 from src.model.capacitor import Capacitor
 from src.model.circuito import Circuito, Metodo
 from src.model.diodo import Diodo

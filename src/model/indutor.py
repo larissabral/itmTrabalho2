@@ -2,7 +2,9 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class Indutor(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo, indutancia, correnteInicial):
+    def __init__(
+        self, nome="", noPositivo=0, noNegativo=0, indutancia=0, correnteInicial=0
+    ):
         super().__init__(nome, noPositivo, noNegativo)
         self.indutancia = indutancia
         self.correnteInicial = correnteInicial
@@ -13,7 +15,7 @@ class Indutor(ElementoCircuito):
             self.noPositivo,
             self.noNegativo,
             self.indutancia,
-            "IC=" + self.correnteInicial,
+            "IC=" + self.correnteInicial.__str__(),
         ]
 
     def from_nl(self, nl):

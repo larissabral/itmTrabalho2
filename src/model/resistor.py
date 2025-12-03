@@ -2,7 +2,7 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class Resistor(ElementoCircuito):
-    def __init__(self, nome, resistencia, noPositivo, noNegativo):
+    def __init__(self, nome="", resistencia=0, noPositivo=0, noNegativo=0):
         super().__init__(nome, noPositivo, noNegativo)
         self.resistencia = resistencia
 

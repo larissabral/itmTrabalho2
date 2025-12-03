@@ -4,7 +4,15 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class FonteCorrente(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo, tipoFonte, parametros, tempoAtual):
+    def __init__(
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        tipoFonte="",
+        parametros=None,
+        tempoAtual=0,
+    ):
         super().__init__(nome, noPositivo, noNegativo)
         self.tipoFonte = tipoFonte
         self.parametros = parametros
@@ -17,7 +25,7 @@ class FonteCorrente(ElementoCircuito):
             self.noNegativo,
             self.tipoFonte,
             self.parametros,
-        ]  # nome: Ix
+        ]  # nome: I
 
     def from_nl(self, nl):
         self.nome = nl[0]

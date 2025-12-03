@@ -4,12 +4,12 @@ from src.model.elementoCircuito import ElementoCircuito
 class FonteCorrenteControladaCorrente(ElementoCircuito):
     def __init__(
         self,
-        nome,
-        noCorrentePositivo,
-        noCorrenteNegativo,
-        noControlePositivo,
-        noControleNegativo,
-        ganhoCorrente,
+        nome="",
+        noCorrentePositivo=0,
+        noCorrenteNegativo=0,
+        noControlePositivo=0,
+        noControleNegativo=0,
+        ganhoCorrente=0,
     ):
         super().__init__(nome, noCorrentePositivo, noCorrenteNegativo)
         self.noCorrentePositivo = noCorrentePositivo

@@ -4,7 +4,15 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class FonteTensao(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo, tipoFonte, parametros, tempoAtual):
+    def __init__(
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        tipoFonte="",
+        parametros=None,
+        tempoAtual=0,
+    ):
         super().__init__(nome, noPositivo, noNegativo)
         self.tipoFonte = tipoFonte
         self.parametros = parametros

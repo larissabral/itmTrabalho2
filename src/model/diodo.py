@@ -47,4 +47,4 @@ class Diodo(ElementoCircuito):
         Ix[noA] -= corrente
         Ix[noB] += corrente
 
-        return G, Ix
+        return G, Ix, posicao

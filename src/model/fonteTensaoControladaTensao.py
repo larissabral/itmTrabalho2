@@ -51,3 +51,5 @@ class FonteTensaoControladaTensao(ElementoCircuito):
         G[ix, noB] += 1
         G[ix, noC] += self.ganhoTensao
         G[ix, noD] -= self.ganhoTensao
+
+        return G, Ix, posicao

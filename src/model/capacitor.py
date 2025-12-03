@@ -42,3 +42,5 @@ class Capacitor(ElementoCircuito):
 
         Ix[noA] += corrente
         Ix[noB] -= corrente
+
+        return G, Ix, posicao

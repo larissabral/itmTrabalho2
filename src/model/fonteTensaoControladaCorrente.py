@@ -55,3 +55,5 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
         G[iy, noA] -= 1
         G[iy, noB] += 1
         G[iy, ix] += self.transresistencia
+
+        return G, Ix, posicao

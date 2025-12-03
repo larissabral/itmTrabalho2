@@ -31,3 +31,5 @@ class Resistor(ElementoCircuito):
         G[noA, noB] -= condutancia
         G[noB, noA] -= condutancia
         G[noB, noB] += condutancia
+
+        return G, Ix, posicao

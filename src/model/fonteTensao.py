@@ -107,3 +107,5 @@ class FonteTensao(ElementoCircuito):
         G[qntNos + posicao, noB] += 1
 
         Ix[qntNos + posicao] -= tensao
+
+        return G, Ix, posicao

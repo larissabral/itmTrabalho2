@@ -51,3 +51,5 @@ class FonteCorrenteControladaCorrente(ElementoCircuito):
         G[noD, ix] -= 1
         G[ix, noC] -= 1
         G[ix, noD] += 1
+
+        return G, Ix, posicao

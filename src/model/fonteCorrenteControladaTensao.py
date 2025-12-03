@@ -48,3 +48,5 @@ class FonteCorrenteControladaTensao(ElementoCircuito):
         G[noA, noD] -= self.transcondutancia
         G[noB, noC] -= self.transcondutancia
         G[noB, noD] += self.transcondutancia
+
+        return G, Ix, posicao

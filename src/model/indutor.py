@@ -41,3 +41,5 @@ class Indutor(ElementoCircuito):
 
         i_t0 = correntesAnteriores[posicao - qntNos] * indutancia_equivalente
         Ix[posicao] += i_t0
+
+        return G, Ix, posicao

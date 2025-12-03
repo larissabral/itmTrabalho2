@@ -9,6 +9,7 @@ from src.model.fonteTensaoControladaCorrente import FonteTensaoControladaCorrent
 from src.model.fonteTensaoControladaTensao import FonteTensaoControladaTensao
 from src.model.indutor import Indutor
 from src.model.resistor import Resistor
+from src.model.resistorNaoLinear import ResistorNaoLinear
 from src.model.simulacao import Simulacao
 
 
@@ -64,6 +65,8 @@ class Simulador:
                 elemento = linha[0]
                 if elemento.startswith("R"):
                     circuito.adiciona_componente(Resistor().from_nl(linha))
+                if elemento.startswith("N"):
+                    circuito.adiciona_componente(ResistorNaoLinear().from_nl(linha))
                 if elemento.startswith("I"):
                     circuito.adiciona_componente(FonteCorrente().from_nl(linha))
                 if elemento.startswith("V"):

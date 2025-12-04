@@ -4,9 +4,11 @@ from src.model.diodo import Diodo
 from src.model.fonteCorrente import FonteCorrente
 from src.model.fonteCorrenteControladaCorrente import FonteCorrenteControladaCorrente
 from src.model.fonteCorrenteControladaTensao import FonteCorrenteControladaTensao
-from src.model.fonteTensao import FonteTensao
 from src.model.fonteTensaoControladaCorrente import FonteTensaoControladaCorrente
 from src.model.fonteTensaoControladaTensao import FonteTensaoControladaTensao
+from src.model.fonteTensaoDC import FonteTensaoDC
+from src.model.fonteTensaoPulso import FonteTensaoPulso
+from src.model.fonteTensaoSenoidal import FonteTensaoSenoidal
 from src.model.indutor import Indutor
 from src.model.resistor import Resistor
 from src.model.resistorNaoLinear import ResistorNaoLinear
@@ -71,7 +73,14 @@ class Simulador:
                 if elemento.startswith("I"):
                     circuito.adiciona_componente(FonteCorrente().from_nl(linha))
                 if elemento.startswith("V"):
-                    circuito.adiciona_componente(FonteTensao().from_nl(linha))
+                    if linha[3] == "DC":
+                        circuito.adiciona_componente(FonteTensaoDC().from_nl(linha))
+                    elif linha[3] == "SIN":
+                        circuito.adiciona_componente(
+                            FonteTensaoSenoidal().from_nl(linha)
+                        )
+                    elif linha[3] == "PULSE":
+                        circuito.adiciona_componente(FonteTensaoPulso().from_nl(linha))
                 if elemento.startswith("G"):
                     circuito.adiciona_componente(
                         FonteCorrenteControladaTensao().from_nl(linha)

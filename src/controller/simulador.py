@@ -47,7 +47,7 @@ class Simulador:
 
         qntIncognitas = qntIncognitasCircuito(linhas)
 
-        circuito = Circuito([], qntNos, qntNos + qntIncognitas, Metodo.BACKWARD_EULER)
+        circuito = Circuito([], qntNos, qntIncognitas, Metodo.BACKWARD_EULER)
 
         simulacao = Simulacao()
         indice = -1
@@ -66,6 +66,7 @@ class Simulador:
                 if elemento.startswith("R"):
                     circuito.adiciona_componente(Resistor().from_nl(linha))
                 if elemento.startswith("N"):
+                    circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(ResistorNaoLinear().from_nl(linha))
                 if elemento.startswith("I"):
                     circuito.adiciona_componente(FonteCorrente().from_nl(linha))
@@ -92,6 +93,7 @@ class Simulador:
                 if elemento.startswith("L"):
                     circuito.adiciona_componente(Indutor().from_nl(linha))
                 if elemento.startswith("D"):
+                    circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(Diodo().from_nl(linha))
 
         resultados = circuito.resolver(simulacao)

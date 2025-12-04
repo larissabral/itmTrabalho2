@@ -29,7 +29,7 @@ class FonteCorrenteDC(ElementoCircuito):
         self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
-        self.tipoFonte = int(nl[3])
+        self.tipoFonte = nl[3]
         self.corrente = float(nl[4])
         return self
 

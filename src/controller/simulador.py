@@ -1,3 +1,4 @@
+from src.model.ampOpIdeal import AmpOpIdeal
 from src.model.capacitor import Capacitor
 from src.model.circuito import Circuito, Metodo
 from src.model.diodo import Diodo
@@ -116,6 +117,8 @@ class Simulador:
                     circuito.adiciona_componente(Capacitor().from_nl(linha))
                 elif elemento.startswith("L"):
                     circuito.adiciona_componente(Indutor().from_nl(linha))
+                elif elemento.startswith("O"):
+                    circuito.adiciona_componente(AmpOpIdeal().from_nl(linha))
                 elif elemento.startswith("D"):
                     circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(Diodo().from_nl(linha))

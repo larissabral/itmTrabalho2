@@ -45,26 +45,23 @@ class Simulador:
 
         linhas = netlist.readlines()
 
+        indice = 0
         qntNos = 0
-        if not linhas[0].startswith("*") and not linhas[0].startswith("\n"):
-            qntNos = int(linhas[0][0])
+        while linhas:
+            if not linhas[indice].startswith("*") and not linhas[0].startswith("\n"):
+                qntNos = int(linhas[indice][0])
+                break
+            indice += 1
 
         qntIncognitas = qntIncognitasCircuito(linhas)
 
         circuito = Circuito([], qntNos, qntIncognitas, Metodo.BACKWARD_EULER)
 
         simulacao = Simulacao()
-        indice = -1
-        while linhas:
-            if linhas[indice].startswith(".TRAN"):
-                simulacao.from_nl(linhas[indice].split(" "))
-                break
-            else:
-                indice -= 1
 
         print("Simulação configurada")
 
-        for linha in linhas:
+        for linha in linhas[indice + 1 :]:
             if not linha.startswith("*") and not linha.startswith("\n"):
 
                 if linha.endswith("\n"):
@@ -122,8 +119,10 @@ class Simulador:
                 elif elemento.startswith("D"):
                     circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(Diodo().from_nl(linha))
+                elif elemento.startswith(".TRAN"):
+                    simulacao.from_nl(linha)
                 else:
-                    print("Componente não implementado ou não reconhecido")
+                    print("Componente não implementado ou não reconhecido: ", elemento)
 
         print("Elementos adicionados")
 

@@ -53,6 +53,7 @@ class Mosfet(ElementoCircuito):
         self.y = int(nl[7])
         self.K = int(nl[8])
         self.tensaoThevenin = int(nl[9])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

@@ -22,6 +22,7 @@ class FonteTensaoDC(ElementoCircuito):
         self.noNegativo = int(nl[2])
         self.tipoFonte = int(nl[3])
         self.tensao = float(nl[4])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

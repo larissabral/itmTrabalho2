@@ -32,6 +32,7 @@ class Capacitor(ElementoCircuito):
         self.capacitancia = float(nl[3])
         if len(nl) == 5:
             self.tensaoInicial = float(nl[4].replace("IC=", ""))
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

@@ -29,3 +29,4 @@ class Simulacao:
         self.passosInternos = int(nl[4])
         if self.metodoIntegracao != Metodo.BACKWARD_EULER:
             raise Exception("Metodo de simulacao não implementado")
+        return self

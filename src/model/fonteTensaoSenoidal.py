@@ -59,6 +59,7 @@ class FonteTensaoSenoidal(ElementoCircuito):
         self.coef_alpha = float(nl[8])  # coeficiente de amortecimento
         self.fase = float(nl[9])
         self.numeroCiclos = float(nl[10])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

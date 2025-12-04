@@ -32,6 +32,7 @@ class Indutor(ElementoCircuito):
         self.indutancia = float(nl[3])
         if len(nl) == 5:
             self.correnteInicial = float(nl[4].replace("IC=", ""))
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

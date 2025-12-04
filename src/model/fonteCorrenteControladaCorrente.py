@@ -4,12 +4,12 @@ from src.model.elementoCircuito import ElementoCircuito
 class FonteCorrenteControladaCorrente(ElementoCircuito):
     def __init__(
         self,
-        nome,
-        noCorrentePositivo,
-        noCorrenteNegativo,
-        noControlePositivo,
-        noControleNegativo,
-        ganhoCorrente,
+        nome="",
+        noCorrentePositivo=0,
+        noCorrenteNegativo=0,
+        noControlePositivo=0,
+        noControleNegativo=0,
+        ganhoCorrente=0,
     ):
         super().__init__(nome, noCorrentePositivo, noCorrenteNegativo)
         self.noCorrentePositivo = noCorrentePositivo
@@ -43,6 +43,9 @@ class FonteCorrenteControladaCorrente(ElementoCircuito):
         noB = self.noCorrenteNegativo
         noC = self.noControlePositivo
         noD = self.noControleNegativo
+
+        posicao += 1
+
         ix = qntNos + posicao
 
         G[noA, ix] += self.ganhoCorrente
@@ -51,3 +54,5 @@ class FonteCorrenteControladaCorrente(ElementoCircuito):
         G[noD, ix] -= 1
         G[ix, noC] -= 1
         G[ix, noD] += 1
+
+        return G, Ix, posicao

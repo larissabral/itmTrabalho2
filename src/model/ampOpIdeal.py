@@ -26,3 +26,5 @@ class AmpOpIdeal(ElementoCircuito):
         G[noC][posicao] += 1
         G[posicao][noA] -= 1
         G[posicao][noB] += 1
+
+        return G, Ix, posicao

@@ -4,7 +4,21 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class ResistorNaoLinear(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo, v1, v2, v3, v4, i1, i2, i3, i4):
+    def __init__(
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        v1=0,
+        v2=0,
+        v3=0,
+        v4=0,
+        i1=0,
+        i2=0,
+        i3=0,
+        i4=0,
+        isNaoLinear=True,
+    ):
         super().__init__(nome, noPositivo, noNegativo)
         self.v1 = v1
         self.v2 = v2
@@ -14,6 +28,7 @@ class ResistorNaoLinear(ElementoCircuito):
         self.i2 = i2
         self.i3 = i3
         self.i4 = i4
+        self.isNaoLinear = isNaoLinear
 
     def to_nl(self):
         return [
@@ -77,3 +92,5 @@ class ResistorNaoLinear(ElementoCircuito):
 
         Ix[noA] += I0
         Ix[noB] -= I0
+
+        return G, Ix, posicao

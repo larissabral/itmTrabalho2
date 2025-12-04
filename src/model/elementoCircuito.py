@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class ElementoCircuito(ABC):
-    def __init__(self, nome, noPositivo, noNegativo):
+    def __init__(self, nome="", noPositivo=0, noNegativo=0):
         self.nome = nome
         self.noPositivo = noPositivo
         self.noNegativo = noNegativo

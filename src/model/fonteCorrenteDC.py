@@ -1,35 +1,45 @@
 from src.model.elementoCircuito import ElementoCircuito
 
 
-class Resistor(ElementoCircuito):
-    def __init__(self, nome="", resistencia=0, noPositivo=0, noNegativo=0):
+class FonteCorrenteDC(ElementoCircuito):
+    def __init__(
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        tipoFonte="DC",
+        corrente=0,
+        tempoAtual=0,
+    ):
         super().__init__(nome, noPositivo, noNegativo)
-        self.resistencia = resistencia
+        self.tipoFonte = tipoFonte
+        self.corrente = corrente
+        self.tempoAtual = tempoAtual
 
     def to_nl(self):
         return [
             self.nome,
             self.noPositivo,
             self.noNegativo,
-            self.resistencia,
-        ]  # nome: R
+            self.tipoFonte,
+            self.corrente,
+        ]  # nome: I
 
     def from_nl(self, nl):
         self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
-        self.resistencia = float(nl[3])
+        self.tipoFonte = int(nl[3])
+        self.corrente = float(nl[4])
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos
     ):
         noA = self.noPositivo
         noB = self.noNegativo
-        condutancia = 1 / self.resistencia
+        corrente = self.corrente
 
-        G[noA, noA] += condutancia
-        G[noA, noB] -= condutancia
-        G[noB, noA] -= condutancia
-        G[noB, noB] += condutancia
+        Ix[noA] -= corrente
+        Ix[noB] += corrente
 
         return G, Ix, posicao

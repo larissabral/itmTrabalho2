@@ -1,5 +1,14 @@
+from src.model.circuito import Metodo
+
+
 class Simulacao:
-    def __init__(self, tempoTotal, passo, metodoIntegracao, passosInternos):
+    def __init__(
+        self,
+        tempoTotal=0,
+        passo=0,
+        metodoIntegracao=Metodo.BACKWARD_EULER,
+        passosInternos=0,
+    ):
         self.tempoTotal = tempoTotal
         self.passo = passo
         self.metodoIntegracao = metodoIntegracao
@@ -17,5 +26,6 @@ class Simulacao:
     def from_nl(self, nl):
         self.tempoTotal = float(nl[1])
         self.passo = float(nl[2])
-        self.metodoIntegracao = nl[3]
         self.passosInternos = int(nl[4])
+        if self.metodoIntegracao != Metodo.BACKWARD_EULER:
+            raise Exception("Metodo de simulacao não implementado")

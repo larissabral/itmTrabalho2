@@ -4,8 +4,15 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class Diodo(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo):
+    def __init__(
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        isNaoLinear=True,
+    ):
         super().__init__(nome, noPositivo, noNegativo)
+        self.isNaoLinear = isNaoLinear
 
     def to_nl(self):
         return [self.nome, self.noPositivo, self.noNegativo]  # nome: D
@@ -46,3 +53,5 @@ class Diodo(ElementoCircuito):
 
         Ix[noA] -= corrente
         Ix[noB] += corrente
+
+        return G, Ix, posicao

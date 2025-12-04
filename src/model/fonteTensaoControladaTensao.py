@@ -43,6 +43,9 @@ class FonteTensaoControladaTensao(ElementoCircuito):
         noB = self.noTensaoNegativo
         noC = self.noControlePositivo
         noD = self.noControleNegativo
+
+        posicao += 1
+
         ix = qntNos + posicao
 
         G[noA, ix] += 1

@@ -41,6 +41,8 @@ class FonteTensao(ElementoCircuito):
         noA = self.noPositivo
         noB = self.noNegativo
 
+        posicao += 1
+
         if self.tipoFonte == "DC":
             tensao = self.parametros[0]
 

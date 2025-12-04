@@ -43,6 +43,9 @@ class FonteCorrenteControladaCorrente(ElementoCircuito):
         noB = self.noCorrenteNegativo
         noC = self.noControlePositivo
         noD = self.noControleNegativo
+
+        posicao += 1
+
         ix = qntNos + posicao
 
         G[noA, ix] += self.ganhoCorrente

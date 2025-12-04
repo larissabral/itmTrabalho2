@@ -3,11 +3,18 @@ from src.model.elementoCircuito import ElementoCircuito
 
 class Capacitor(ElementoCircuito):
     def __init__(
-        self, nome="", noPositivo=0, noNegativo=0, capacitancia=0, tensaoInicial=0
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        capacitancia=0,
+        tensaoInicial=0,
+        isTemporal=True,
     ):
         super().__init__(nome, noPositivo, noNegativo)
         self.capacitancia = capacitancia
         self.tensaoInicial = tensaoInicial
+        self.isTemporal = isTemporal
 
     def to_nl(self):
         return [

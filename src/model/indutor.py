@@ -3,11 +3,18 @@ from src.model.elementoCircuito import ElementoCircuito
 
 class Indutor(ElementoCircuito):
     def __init__(
-        self, nome="", noPositivo=0, noNegativo=0, indutancia=0, correnteInicial=0
+        self,
+        nome="",
+        noPositivo=0,
+        noNegativo=0,
+        indutancia=0,
+        correnteInicial=0,
+        isTemporal=True,
     ):
         super().__init__(nome, noPositivo, noNegativo)
         self.indutancia = indutancia
         self.correnteInicial = correnteInicial
+        self.isTemporal = isTemporal
 
     def to_nl(self):
         return [

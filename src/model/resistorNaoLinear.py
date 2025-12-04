@@ -17,6 +17,7 @@ class ResistorNaoLinear(ElementoCircuito):
         i2=0,
         i3=0,
         i4=0,
+        isNaoLinear=True,
     ):
         super().__init__(nome, noPositivo, noNegativo)
         self.v1 = v1
@@ -27,6 +28,7 @@ class ResistorNaoLinear(ElementoCircuito):
         self.i2 = i2
         self.i3 = i3
         self.i4 = i4
+        self.isNaoLinear = isNaoLinear
 
     def to_nl(self):
         return [

@@ -59,7 +59,7 @@ class Simulador:
 
         simulacao = Simulacao()
 
-        print("Simulação configurada")
+        print("Simulação configurada. Implementando elementos...")
 
         for linha in linhas[indice + 1 :]:
             if not linha.startswith("*") and not linha.startswith("\n"):
@@ -122,13 +122,15 @@ class Simulador:
                 elif elemento.startswith(".TRAN"):
                     simulacao.from_nl(linha)
                 else:
-                    print("Componente não implementado ou não reconhecido: ", elemento)
+                    raise ValueError(
+                        f"Componente não implementado ou não reconhecido: {elemento}"
+                    )
 
-        print("Elementos adicionados")
+        print("Elementos adicionados. Resolvendo circuito...")
 
         resultados = circuito.resolver(simulacao)
 
-        print("Circuito resolvido")
+        print("Circuito resolvido.")
 
         resultados = resultados.transpose()
 

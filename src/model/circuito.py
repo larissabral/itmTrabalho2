@@ -127,7 +127,7 @@ class Circuito:
             for elemento in self.elementos:
                 if hasattr(elemento, "isNaoLinear"):
                     matriz, vetor, posicao = elemento.estampa(
-                        matriz, vetor, 0, [], [], 0, self.qntNos
+                        matriz, vetor, 0, tensoesAnteriores, [], 0, self.qntNos
                     )
 
             resultadoParcial = np.linalg.solve(matriz[1:, 1:], vetor[1:])

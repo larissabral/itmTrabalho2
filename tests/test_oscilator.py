@@ -1,5 +1,7 @@
 import os
 
+import numpy as np
+
 from src.controller.simulador import Simulador
 
 BASE = os.path.dirname(__file__)
@@ -12,4 +14,4 @@ def test_oscilator():
     resultados = Simulador().simular_from_nl(netlist_path)
 
     with open(gabarito_path) as gabarito:
-        assert resultados == gabarito.read()
+        assert np.array_equal(resultados, gabarito.read())

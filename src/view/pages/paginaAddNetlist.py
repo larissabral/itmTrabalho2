@@ -1,4 +1,5 @@
 import os
+import tempfile
 from pathlib import Path
 
 from nicegui import ui
@@ -63,13 +64,44 @@ def paginaAddNetlist(painel):
             ).classes("w-full justify-center")
 
 
-def submeter_netlist_arquivo(arquivo):
+def submeter_netlist_arquivo(evento):
     ui.notify(
-        f"Netlist submetida a partir de arquivo {arquivo.file.name}! Simulando circuito..."
+        f"Netlist submetida a partir de arquivo {evento.file.name}! Simulando circuito..."
     )
-    resultado = Simulador().simular_from_nl(arquivo)
-    ui.notify(f"{resultado}")
+    try:
+        temp_path = os.path.join(tempfile.gettempdir(), evento.file.name)
+
+        with open(temp_path, "wb") as f:
+            f.write(evento.file._data)
+
+        resultado = Simulador().simular_from_nl(temp_path)
+
+        ui.notify(f"{resultado}")
+    except Exception as e:
+        ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
+        print(e)
 
 
 def submeter_netlist_texto(texto):
-    ui.notify("Netlist submetida a partir de texto! Simulando circuito...")
+    try:
+        if not texto.strip():
+            ui.notify("O texto está vazio!", color="negative")
+            return
+
+        ui.notify("Netlist enviada! Simulando circuito...")
+
+        import os
+        import tempfile
+
+        temp_path = os.path.join(tempfile.gettempdir(), "netlist_texto.txt")
+
+        with open(temp_path, "w", encoding="utf-8") as f:
+            f.write(texto)
+
+        resultado = Simulador().simular_from_nl(temp_path)
+
+        ui.notify(str(resultado))
+
+    except Exception as e:
+        ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
+        print(e)

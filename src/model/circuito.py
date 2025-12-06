@@ -57,7 +57,7 @@ class Circuito:
 
         tempo = np.arange(0, quantidadePontos) * passo
 
-        tensoesAnteriores = []
+        tensoesAnteriores = np.zeros(qntNos)
 
         resultados = np.zeros([quantidadePontos, qntNos])
 
@@ -119,7 +119,7 @@ class Circuito:
     def calcularCircuitoNaoLinear(
         self, GnTemporal, ITemporal, tensoesAnteriores, tolerancia, qntIncognitas
     ):
-        iteracoes = 1000
+        iteracoes = 20
 
         matriz, vetor = np.copy(GnTemporal), np.copy(ITemporal)
 

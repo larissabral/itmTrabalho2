@@ -2,6 +2,7 @@ import os
 import tempfile
 from pathlib import Path
 
+import numpy as np
 from nicegui import ui
 
 from src.controller.simulador import Simulador
@@ -78,7 +79,7 @@ def submeter_netlist_arquivo(evento):
 
         baixa_resultado(resultado)
 
-        # ui.notify(f"{resultado}")
+        ui.notify("Simulação concluída com sucesso!", color="green")
 
     except Exception as e:
         ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
@@ -104,17 +105,14 @@ def submeter_netlist_texto(texto):
 
         ui.notify("Simulação concluída com sucesso!", color="green")
 
-        # ui.notify(str(resultado))
-
     except Exception as e:
         ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
         print(e)
 
 
 def baixa_resultado(resultado):
-    tmp_path_resultado = tempfile.mktemp(suffix=".txt")
+    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".txt")
 
-    with open(tmp_path_resultado, "w", encoding="utf-8") as f:
-        f.write(resultado)
+    np.savetxt(temp.name, resultado, fmt="%.10f")
 
-    ui.download(tmp_path_resultado, filename="resultado_simulacao.txt")
+    ui.download(temp.name, filename="resultado_simulacao.txt")

@@ -1,0 +1,186 @@
+# Especificações técnicas para a interface de arquivo (netlist)
+
+**A primeira linha deve ser o número de nós do circuito seguida pela descrição do circuito, com um elemento por linha.**
+A primeira letra determina o tipo de elemento. Os nós podem ser inteiros ou labels (strings).
+
+
+Para cada elemento suportado, o seguinte formato deve ser implementado:
+
+---
+
+## Comentário
+- Primeiro caractere: `*`
+- Primeira palavra (excluindo primeiro caractere): comentário
+
+---
+
+## Resistor
+- Primeiro caractere: `R`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó positivo
+- Terceira palavra: nó negativo
+- Quarta palavra: resistência
+
+---
+
+## Indutor
+- Primeiro caractere: `L`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó positivo
+- Terceira palavra: nó negativo
+- Quarta palavra: indutância
+- Quinta palavra (opcional): valor da corrente inicial do indutor. Quando houver essa opção, essa palavra deve começar com `IC=` seguida pelo valor da condição inicial.
+
+---
+
+## Capacitor
+- Primeiro caractere: `C`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó positivo
+- Terceira palavra: nó negativo
+- Quarta palavra: capacitância
+- Quinta palavra (opcional): valor da tensão inicial do capacitor. Quando houver essa opção, essa palavra deve começar com `IC=` seguida pelo valor da condição inicial.
+
+---
+
+## Resistor não linear
+- Primeiro caractere: `N`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó positivo
+- Terceira palavra: nó negativo
+- Quarta palavra: V1
+- Quinta palavra: I1
+- Sexta palavra: V2
+- Sétima palavra: I2
+- Oitava palavra: V3
+- Nona palavra: I3
+- Décima palavra: V4
+- Décima primeira palavra: I4
+
+---
+
+## Fonte de tensão controlada por tensão
+- Primeiro caractere: `E`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de tensão positivo
+- Terceira palavra: nó de tensão negativo
+- Quarta palavra: nó de controle positivo
+- Quinta palavra: nó de controle negativo
+- Sexta palavra: ganho de tensão
+
+---
+
+## Fonte de corrente controlada por corrente
+- Primeiro caractere: `F`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de corrente positivo
+- Terceira palavra: nó de corrente negativo
+- Quarta palavra: nó de controle positivo
+- Quinta palavra: nó de controle negativo
+- Sexta palavra: ganho de corrente
+
+---
+
+## Fonte de corrente controlada por tensão (transcondutância)
+- Primeiro caractere: `G`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de corrente positivo
+- Terceira palavra: nó de corrente negativo
+- Quarta palavra: nó de controle positivo
+- Quinta palavra: nó de controle negativo
+- Sexta palavra: transcondutância
+
+---
+
+## Fonte de tensão controlada por corrente (transresistência)
+- Primeiro caractere: `H`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de tensão positivo
+- Terceira palavra: nó de tensão negativo
+- Quarta palavra: nó de controle positivo
+- Quinta palavra: nó de controle negativo
+- Sexta palavra: transresistência
+
+---
+
+## Amplificador Operacional Ideal
+- Primeiro caractere: `O`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de controle positivo
+- Terceira palavra: nó de controle negativo
+- Quarta palavra: nó de saída
+
+---
+
+## Diodo
+- Primeiro caractere: `D`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó positivo
+- Terceira palavra: nó negativo
+
+---
+
+## Fonte de corrente (independente)
+- Primeiro caractere: `I`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de corrente positivo
+- Terceira palavra: nó de corrente negativo
+- Palavras seguintes: parâmetros da fonte de corrente conforme o tipo de fonte utilizada
+
+---
+
+## Fonte de tensão (independente)
+- Primeiro caractere: `V`
+- Primeira palavra (excluindo primeiro caractere): nome do elemento
+- Segunda palavra: nó de tensão positivo
+- Terceira palavra: nó de tensão negativo
+- Palavras seguintes: parâmetros da fonte de tensão conforme o tipo de fonte utilizada
+
+---
+
+## Parâmetros para fontes de tensão e corrente independentes (formato SPICE)
+
+As fontes independentes (a partir da quarta palavra) devem seguir o formato SPICE, com capacidade de suportar fontes contínuas, senoidais e em pulso. A configuração de cada fonte é detalhada a seguir:
+
+
+### Fonte contínua (DC)
+- Quarta palavra: `DC`
+- Quinta palavra: valor do nível contínuo do sinal
+
+
+### Fonte senoidal (SIN)
+- Quarta palavra: `SIN`
+- Quinta palavra: valor do nível contínuo do sinal (A0)
+- Sexta palavra: amplitude do sinal (A)
+- Sétima palavra: frequência em Hertz (f)
+- Oitava palavra: atraso do sinal (ta)
+- Nona palavra: coeficiente de amortecimento (α)
+- Décima palavra: defasagem do sinal em graus (φ)
+- Décima primeira palavra: número de ciclos
+
+
+### Fonte pulsada (PULSE)
+- Quarta palavra: `PULSE`
+- Quinta palavra: valor do nível de amplitude 1 (amp1)
+- Sexta palavra: valor do nível de amplitude 2 (amp2)
+- Sétima palavra: atraso do sinal (delay)
+- Oitava palavra: tempo de subida (tr)
+- Nona palavra: tempo de descida (tf)
+- Décima palavra: tempo de pulso ligado (ton)
+- Décima primeira palavra: período do sinal (period)
+- Décima segunda palavra: número de ciclos
+
+---
+
+## Última linha do arquivo: parâmetros da simulação
+
+A última linha do arquivo é reservada para os parâmetros da simulação. Essa linha deve ter o seguinte formato:
+
+- Primeira palavra: `.TRAN` para análise de transiente
+- Segunda palavra: tempo total de simulação
+- Terceira palavra: passo de simulação
+- Quarta palavra: método de integração utilizado na simulação com as seguintes opções: `BE` (backward Euler), `FE` (forward Euler) ou `TRAP` (trapezoidal)
+- Quinta palavra: número de passos internos
+- Sexta palavra (opcional): `UIC` que significa usar as condições iniciais durante a simulação
+
+

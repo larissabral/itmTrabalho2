@@ -76,7 +76,10 @@ def submeter_netlist_arquivo(evento):
 
         resultado = Simulador().simular_from_nl(temp_path)
 
-        ui.notify(f"{resultado}")
+        baixa_resultado(resultado)
+
+        # ui.notify(f"{resultado}")
+
     except Exception as e:
         ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
         print(e)
@@ -90,9 +93,6 @@ def submeter_netlist_texto(texto):
 
         ui.notify("Netlist enviada! Simulando circuito...")
 
-        import os
-        import tempfile
-
         temp_path = os.path.join(tempfile.gettempdir(), "netlist_texto.txt")
 
         with open(temp_path, "w", encoding="utf-8") as f:
@@ -100,8 +100,21 @@ def submeter_netlist_texto(texto):
 
         resultado = Simulador().simular_from_nl(temp_path)
 
-        ui.notify(str(resultado))
+        baixa_resultado(resultado)
+
+        ui.notify("Simulação concluída com sucesso!", color="green")
+
+        # ui.notify(str(resultado))
 
     except Exception as e:
         ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
         print(e)
+
+
+def baixa_resultado(resultado):
+    tmp_path_resultado = tempfile.mktemp(suffix=".txt")
+
+    with open(tmp_path_resultado, "w", encoding="utf-8") as f:
+        f.write(resultado)
+
+    ui.download(tmp_path_resultado, filename="resultado_simulacao.txt")

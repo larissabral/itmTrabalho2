@@ -1,6 +1,5 @@
-import enum
-
 from nicegui import ui
+from nicegui.elements.input import Input
 
 from src.model.circuito import Circuito, Metodo
 from src.model.simulacao import Simulacao
@@ -19,6 +18,8 @@ sim_state = {
 
 
 def paginaAddComponente(painel):
+    global container_blocos
+
     def configurar_simulacao():
         nl = [
             ".TRAN",
@@ -108,13 +109,19 @@ def paginaAddComponente(painel):
                             "Salvar", on_click=lambda: configurar_simulacao()
                         ).classes("primary")
 
+    ui.element("div").classes("h-[30px]")
+
     with ui.row().classes("w-full justify-center"):
         with ui.dropdown_button("Adicionar Componente", icon="add", auto_close=True):
-            for componente in Componente:
+            for componente in CAMPOS_POR_COMPONENTE.keys():
                 ui.item(
-                    componente.value,
-                    on_click=lambda c=componente: selecionar_componente(c.value),
+                    componente,
+                    on_click=lambda item=componente: criar_bloco_componente(item),
                 )
+
+    container_blocos = ui.column().classes("w-full items-center gap-4 justify-center")
+
+    ui.element("div").classes("h-[30px]")
 
     with ui.row().classes("w-full justify-center"):
         ui.button("Gerar netlist", on_click=lambda: gerar_netlist_texto()).classes(
@@ -126,27 +133,187 @@ def paginaAddComponente(painel):
         )
 
 
-class Componente(enum.Enum):
-    R = "Resistor"
-    N = "ResistorNaoLinear"
+CAMPOS_POR_COMPONENTE = {
+    "Resistor": ["Nome", "Nó +", "Nó -", "Resistência (Ω)"],
+    "ResistorNaoLinear": [
+        "Nome",
+        "Nó +",
+        "Nó -",
+        "V1",
+        "I1",
+        "V2",
+        "I2",
+        "V3",
+        "I3",
+        "V4",
+        "I4",
+    ],
+    "FonteCorrenteDC": ["Nome", "Nó +", "Nó -", "TipoFonte", "Corrente (A)"],
+    "FonteCorrenteSenoidal": [
+        "Nome",
+        "Nó +",
+        "Nó -",
+        "TipoFonte",
+        "NivelContinuo",
+        "Amplitude",
+        "Frequencia",
+        "Atraso",
+        "Coef_alpha",
+        "Fase",
+        "NumeroCiclos",
+    ],
+    "FonteCorrentePulso": [
+        "Nome",
+        "Nó +",
+        "Nó -",
+        "TipoFonte",
+        "Valor1",
+        "Valor2",
+        "Atraso",
+        "TempoSubida",
+        "TempoDescida",
+        "TempoLigado",
+        "Periodo",
+        "NumeroCiclos",
+    ],
+    "FonteTensaoDC": ["Nome", "Nó +", "Nó -", "TipoFonte", "Tensão (V)"],
+    "FonteTensaoSenoidal": [
+        "Nome",
+        "Nó +",
+        "Nó -",
+        "TipoFonte",
+        "NivelContinuo",
+        "Amplitude",
+        "Frequencia",
+        "Atraso",
+        "Coef_alpha",
+        "Fase",
+        "NumeroCiclos",
+    ],
+    "FonteTensaoPulso": [
+        "Nome",
+        "Nó +",
+        "Nó -",
+        "TipoFonte",
+        "Valor1",
+        "Valor2",
+        "Atraso",
+        "TempoSubida",
+        "TempoDescida",
+        "TempoLigado",
+        "Periodo",
+        "NumeroCiclos",
+    ],
+    "FonteCorrenteControladaTensao": [
+        "Nome",
+        "Nó Corrente +",
+        "Nó Corrente -",
+        "Nó Controle +",
+        "Nó Controle -",
+        "Transcondutância",
+    ],
+    "FonteCorrenteControladaCorrente": [
+        "Nome",
+        "Nó Corrente +",
+        "Nó Corrente -",
+        "Nó Controle +",
+        "Nó Controle -",
+        "GanhoCorrente",
+    ],
+    "FonteTensaoControladaTensao": [
+        "Nome",
+        "Nó Corrente +",
+        "Nó Corrente -",
+        "Nó Controle +",
+        "Nó Controle -",
+        "GanhoTensão",
+    ],
+    "FonteTensaoControladaCorrente": [
+        "Nome",
+        "Nó Corrente +",
+        "Nó Corrente -",
+        "Nó Controle +",
+        "Nó Controle -",
+        "Transresistência",
+    ],
+    "Capacitor": ["Nome", "Nó +", "Nó -", "Capacitância (F)", "TensãoInicial"],
+    "Indutor": ["Nome", "Nó +", "Nó -", "Indutância (H)", "CorrenteInicial"],
+    "AmpOpIdeal": ["Nome", "Nó +", "Nó -", "Nó Saída"],
+    "Diodo": ["Nome", "Nó +", "Nó -"],
+}
 
-    I_DC = "FonteCorrenteDC"
-    I_SIN = "FonteCorrenteSenoidal"
-    I_PULSE = "FonteCorrentePulso"
+componentes_ui = []
+container_blocos = None
 
-    V_DC = "FonteTensaoDC"
-    V_SIN = "FonteTensaoSenoidal"
-    V_PULSE = "FonteTensaoPulso"
 
-    G = "FonteCorrenteControladaTensao"
-    F = "FonteCorrenteControladaCorrente"
-    E = "FonteTensaoControladaTensao"
-    H = "FonteTensaoControladaCorrente"
+def criar_bloco_componente(nome_componente):
+    campos = CAMPOS_POR_COMPONENTE[nome_componente]
 
-    C = "Capacitor"
-    L = "Indutor"
-    AmpOp = "AmpOpIdeal"  # O
-    D = "Diodo"
+    with container_blocos:
+        with ui.card().classes("shadow-lg rounded-lg") as bloco:
+            with ui.row().classes("items-center gap-4 w-full justify-center"):
+                estado = {"editavel": True}
+
+                inputs = []
+
+                inputs.append(ui.label(nome_componente))
+
+                for campo in campos:
+                    if campo == "TipoFonte":
+                        if (
+                            nome_componente == "FonteCorrenteDC"
+                            or nome_componente == "FonteTensaoDC"
+                        ):
+                            inp = ui.label("DC")
+                        elif (
+                            nome_componente == "FonteCorrenteSenoidal"
+                            or nome_componente == "FonteTensaoSenoidal"
+                        ):
+                            inp = ui.label("SIN")
+                        else:
+                            inp = ui.label("PULSE")
+                    else:
+                        inp = ui.input(campo).style("width: 130px")
+                    inputs.append(inp)
+
+                botao_salvar = ui.button("Salvar").props(
+                    f'color={"blue" if not estado["editavel"] else "green"}'
+                )
+
+                botao_excluir = ui.button("Excluir", color="red")
+
+                def salvar():
+                    estado["editavel"] = False
+                    for fields in inputs:
+                        if isinstance(fields, Input):
+                            fields.disable()
+                    botao_salvar.text = "Editar"
+                    botao_salvar.props("color=blue")
+                    botao_salvar.update()
+
+                def editar():
+                    estado["editavel"] = True
+                    for fields in inputs:
+                        if isinstance(fields, Input):
+                            fields.enable()
+                    botao_salvar.text = "Salvar"
+                    botao_salvar.props("color=green")
+                    botao_salvar.update()
+
+                def clique_salvar_editar():
+                    if estado["editavel"]:
+                        salvar()
+                    else:
+                        editar()
+
+                def excluir():
+                    bloco.delete()
+                    componentes_ui.remove(bloco)
+
+                botao_salvar.on_click(clique_salvar_editar)
+                botao_excluir.on_click(excluir)
+
+            componentes_ui.append(bloco)
 
 
 def selecionar_componente(nome):

@@ -34,7 +34,7 @@ class FonteCorrenteControladaCorrente(ElementoCircuito):
         self.noCorrenteNegativo = int(nl[2])
         self.noControlePositivo = int(nl[3])
         self.noControleNegativo = int(nl[4])
-        self.ganhoCorrente = int(nl[5])
+        self.ganhoCorrente = float(nl[5])
         return self
 
     def estampa(

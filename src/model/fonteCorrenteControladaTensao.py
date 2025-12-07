@@ -34,7 +34,7 @@ class FonteCorrenteControladaTensao(ElementoCircuito):
         self.noCorrenteNegativo = int(nl[2])
         self.noControlePositivo = int(nl[3])
         self.noControleNegativo = int(nl[4])
-        self.transcondutancia = int(nl[5])
+        self.transcondutancia = float(nl[5])
         return self
 
     def estampa(

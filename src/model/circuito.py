@@ -144,3 +144,40 @@ class Circuito:
             matriz, vetor = np.copy(GnTemporal), np.copy(ITemporal)
 
         return np.linalg.solve(matriz[1:, 1:], vetor[1:])
+
+    def calculaQntIncognitasENos(self):
+        listaNos = []
+        qntIncognitas = 0
+        qntNos = 0
+
+        for elemento in self.elementos:
+            linha = elemento.to_nl()
+            listaNos.append(linha[1])
+            listaNos.append(linha[2])
+
+            if (
+                linha[0].startswith("G")
+                or linha[0].startswith("H")
+                or linha[0].startswith("F")
+                or linha[0].startswith("E")
+            ):
+                listaNos.append(linha[3])
+                listaNos.append(linha[4])
+
+            if (
+                linha[0].startswith("V")
+                or linha[0].startswith("E")
+                or linha[0].startswith("F")
+                or linha[0].startswith("L")
+            ):
+                qntIncognitas = qntIncognitas + 1
+
+            if linha[0].startswith("H"):
+                qntIncognitas = qntIncognitas + 2
+
+        for val in listaNos:
+            if qntNos < int(val):
+                qntNos = int(val)
+
+        self.qntNos = qntNos
+        self.qntIncognitas = qntIncognitas

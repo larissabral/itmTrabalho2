@@ -1,7 +1,27 @@
+import tempfile
+
+import numpy as np
 from nicegui import ui
 from nicegui.elements.input import Input
+from nicegui.elements.label import Label
 
+from src.model.ampOpIdeal import AmpOpIdeal
+from src.model.capacitor import Capacitor
 from src.model.circuito import Circuito, Metodo
+from src.model.diodo import Diodo
+from src.model.fonteCorrenteControladaCorrente import FonteCorrenteControladaCorrente
+from src.model.fonteCorrenteControladaTensao import FonteCorrenteControladaTensao
+from src.model.fonteCorrenteDC import FonteCorrenteDC
+from src.model.fonteCorrentePulso import FonteCorrentePulso
+from src.model.fonteCorrenteSenoidal import FonteCorrenteSenoidal
+from src.model.fonteTensaoControladaCorrente import FonteTensaoControladaCorrente
+from src.model.fonteTensaoControladaTensao import FonteTensaoControladaTensao
+from src.model.fonteTensaoDC import FonteTensaoDC
+from src.model.fonteTensaoPulso import FonteTensaoPulso
+from src.model.fonteTensaoSenoidal import FonteTensaoSenoidal
+from src.model.indutor import Indutor
+from src.model.resistor import Resistor
+from src.model.resistorNaoLinear import ResistorNaoLinear
 from src.model.simulacao import Simulacao
 
 circuito = Circuito([], 0, 0, Metodo.BACKWARD_EULER)
@@ -273,7 +293,10 @@ def criar_bloco_componente(nome_componente):
                         else:
                             inp = ui.label("PULSE")
                     else:
-                        inp = ui.input(campo).style("width: 130px")
+                        inp = ui.input(
+                            campo,
+                            validation={"Campo obrigatório": lambda value: bool(value)},
+                        ).style("width: 130px")
                     inputs.append(inp)
 
                 botao_salvar = ui.button("Salvar").props(
@@ -302,6 +325,8 @@ def criar_bloco_componente(nome_componente):
 
                 def clique_salvar_editar():
                     if estado["editavel"]:
+                        if not validar_campos(inputs):
+                            return
                         salvar()
                     else:
                         editar()
@@ -315,24 +340,144 @@ def criar_bloco_componente(nome_componente):
 
             componentes_ui.append(bloco)
 
+            bloco.meta = {
+                "nome": nome_componente,
+                "inputs": inputs[1:],
+            }
+
+
+def validar_campos(inputs):
+    for field in inputs:
+        if isinstance(field, Input):
+            if not field.validate():
+                ui.notify(f"Preencha o campo: {field.label}", color="red")
+                return False
+    return True
+
 
 def selecionar_componente(nome):
     ui.notify(f"Componente selecionado: {nome}")
 
 
+def processar_componentes():
+    circuito.elementos = []
+
+    for bloco in componentes_ui:
+        adicionar_componente_circuito(bloco)
+
+
+def adicionar_componente_circuito(bloco):
+    nome_componente = bloco.meta["nome"]
+    valores = []
+
+    for comp in bloco.meta["inputs"]:
+        if isinstance(comp, Input):
+            valores.append(comp.value)
+
+        elif isinstance(comp, Label):
+            valores.append(comp.text)
+
+    if nome_componente == "Resistor":
+        circuito.adiciona_componente(Resistor().from_nl(valores))
+    elif nome_componente == "ResistorNaoLinear":
+        circuito.possuiElementoNaoLinear = True
+        circuito.adiciona_componente(ResistorNaoLinear().from_nl(valores))
+    elif nome_componente == "FonteCorrenteDC":
+        circuito.adiciona_componente(FonteCorrenteDC().from_nl(valores))
+    elif nome_componente == "FonteCorrenteSenoidal":
+        circuito.adiciona_componente(FonteCorrenteSenoidal().from_nl(valores))
+    elif nome_componente == "FonteCorrentePulso":
+        circuito.adiciona_componente(FonteCorrentePulso().from_nl(valores))
+    elif nome_componente == "FonteTensaoDC":
+        circuito.adiciona_componente(FonteTensaoDC().from_nl(valores))
+    elif nome_componente == "FonteTensaoSenoidal":
+        circuito.adiciona_componente(FonteTensaoSenoidal().from_nl(valores))
+    elif nome_componente == "FonteTensaoPulso":
+        circuito.adiciona_componente(FonteTensaoPulso().from_nl(valores))
+    elif nome_componente == "FonteCorrenteControladaTensao":
+        circuito.adiciona_componente(FonteCorrenteControladaTensao().from_nl(valores))
+    elif nome_componente == "FonteCorrenteControladaCorrente":
+        circuito.adiciona_componente(FonteCorrenteControladaCorrente().from_nl(valores))
+    elif nome_componente == "FonteTensaoControladaTensao":
+        circuito.adiciona_componente(FonteTensaoControladaTensao().from_nl(valores))
+    elif nome_componente == "FonteTensaoControladaCorrente":
+        circuito.adiciona_componente(FonteTensaoControladaCorrente().from_nl(valores))
+    elif nome_componente == "Capacitor":
+        circuito.adiciona_componente(Capacitor().from_nl(valores))
+    elif nome_componente == "Indutor":
+        circuito.adiciona_componente(Indutor().from_nl(valores))
+    elif nome_componente == "AmpOpIdeal":
+        circuito.adiciona_componente(AmpOpIdeal().from_nl(valores))
+    elif nome_componente == "Diodo":
+        circuito.possuiElementoNaoLinear = True
+        circuito.adiciona_componente(Diodo().from_nl(valores))
+    else:
+        ui.notify("Ocorreu um erro ao adicionar componente ao circuito!", color="red")
+
+
 def gerar_netlist_texto():
+    processar_componentes()
     if not circuito.elementos:
         ui.notify("Adicione componentes para gerar netlist!", color="red")
     else:
-        # gera netlist: circuito.to_nl().append(simulacao.to_nl())
+        netlist = []
+        circuito.calculaQntIncognitasENos()
+        netlist.append([circuito.qntNos])
+
+        for componente in circuito.elementos:
+            netlist.append(componente.to_nl())
+
+        netlist.append(simulacao.to_nl())
+
+        baixa_netlist(netlist)
+
         ui.notify("Netlist gerada!", color="green")
 
 
 def simular_circuito():
-    if not sim_state["simulacao_configurada"]:
-        ui.notify("Configure os parâmetros da simulação antes de simular!", color="red")
-    elif not circuito.elementos:
-        ui.notify("Adicione componentes para simular o circuito!", color="red")
+    if sim_state["simulacao_configurada"]:
+        processar_componentes()
+        if not circuito.elementos:
+            ui.notify("Adicione componentes para simular o circuito!", color="red")
+        else:
+            ui.notify("Simulação em andamento...")
+            try:
+                circuito.calculaQntIncognitasENos()
+                resultado = circuito.resolver(simulacao)
+                resultado = resultado.transpose()
+                baixa_resultado(resultado)
+
+                ui.notify("Simulação concluída com sucesso!", color="green")
+
+            except Exception as e:
+                ui.notify(f"Ocorreu um erro na simulação: {e}", color="negative")
+                print(e)
+
     else:
-        ui.notify("Simulação em andamento...")
-        circuito.resolver(simulacao)
+        ui.notify("Configure os parâmetros da simulação antes de simular!", color="red")
+
+
+def baixa_resultado(resultado):
+    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".txt")
+
+    np.savetxt(temp.name, resultado, fmt="%.10f")
+
+    ui.download(temp.name, filename="resultado_simulacao.txt")
+
+
+def baixa_netlist(netlist):
+    linhas_formatadas = []
+
+    for item in netlist:
+        if isinstance(item, list):
+            linhas_formatadas.append(" ".join(str(x) for x in item))
+        else:
+            linhas_formatadas.append(str(item))
+
+    texto_netlist = "\n".join(linhas_formatadas)
+
+    temp = tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".txt")
+    temp.write(texto_netlist)
+    temp.close()
+
+    ui.download(temp.name, filename="netlist.txt")

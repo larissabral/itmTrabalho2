@@ -123,7 +123,7 @@ class Simulador:
                     circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(Diodo().from_nl(linha))
                 elif elemento.startswith(".TRAN"):
-                    simulacao.from_nl(linha)
+                    circuito.simulacao = simulacao.from_nl(linha)
                 else:
                     raise ValueError(
                         f"Componente não implementado ou não reconhecido: {elemento}"
@@ -131,7 +131,7 @@ class Simulador:
 
         print("Elementos adicionados. Resolvendo circuito...")
 
-        resultados = circuito.resolver(simulacao)
+        resultados = circuito.resolver()
 
         print("Circuito resolvido.")
 

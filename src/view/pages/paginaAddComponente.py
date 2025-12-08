@@ -424,8 +424,6 @@ def gerar_netlist_texto():
         circuito.simulacao = simulacao
         netlist = circuito.to_nl()
 
-        print(netlist)
-
         baixa_netlist(netlist)
 
         ui.notify("Netlist gerada!", color="green")

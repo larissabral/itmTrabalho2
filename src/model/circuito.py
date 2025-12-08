@@ -17,18 +17,23 @@ class Circuito:
         qntIncognitas,
         metodoIntegracao,
         possuiElementoNaoLinear=False,
+        simulacao=None,
     ):
         self.possuiElementoNaoLinear = possuiElementoNaoLinear
         self.elementos = elementos
         self.qntNos = qntNos
         self.qntIncognitas = qntIncognitas
         self.metodoIntegracao = metodoIntegracao
+        self.simulacao = simulacao
 
-    def to_nl(self) -> str:
-        netlist = f"{self.qntNos}\n"
-        for elemento in self.elementos:
-            if hasattr(elemento, "to_nl"):
-                netlist += elemento.to_nl() + "\n"
+    def to_nl(self):
+        netlist = [[self.qntNos]]
+
+        for componente in self.elementos:
+            netlist.append(componente.to_nl())
+
+        netlist.append(self.simulacao.to_nl())
+
         return netlist
 
     def adiciona_componente(self, componente):
@@ -42,9 +47,14 @@ class Circuito:
 
         return G, Ix
 
-    def resolver(self, simulacao):
+    def resolver(self):
+        if self.qntNos == 0:
+            self.calculaQntIncognitasENos()
+
         qntIncognitas = self.qntIncognitas
         qntNos = self.qntNos
+
+        simulacao = self.simulacao
 
         Gn, Ix = self.inicializar_matrizes()
         posicao = 0

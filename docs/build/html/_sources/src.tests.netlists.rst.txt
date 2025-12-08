@@ -1,0 +1,10 @@
+src.tests.netlists package
+==========================
+
+Module contents
+---------------
+
+.. automodule:: src.tests.netlists
+   :members:
+   :show-inheritance:
+   :undoc-members:

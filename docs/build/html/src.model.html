@@ -1,0 +1,1769 @@
+<!doctype html>
+<html class="writer-html5" lang="pt-BR" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      src.model package &mdash; Documentação Simulador de Circuitos Elétricos
+      0.1
+    </title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="_static/pygments.css?v=b86133f3"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="_static/css/theme.css?v=e59714d7"
+    />
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=88519e4e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=71a39b36"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link
+      rel="next"
+      title="src.model.elementos package"
+      href="src.model.elementos.html"
+    />
+    <link
+      rel="prev"
+      title="src.controller package"
+      href="src.controller.html"
+    />
+  </head>
+
+  <body class="wy-body-for-nav">
+    <div class="wy-grid-for-nav">
+      <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+          <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home">
+              Simulador de Circuitos Elétricos
+            </a>
+            <div role="search">
+              <form
+                id="rtd-search-form"
+                class="wy-form"
+                action="search.html"
+                method="get"
+              >
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Pesquisar documentos"
+                  aria-label="Pesquisar documentos"
+                />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </div>
+          </div>
+          <div
+            class="wy-menu wy-menu-vertical"
+            data-spy="affix"
+            role="navigation"
+            aria-label="Menu de navegação"
+          >
+            <p class="caption" role="heading">
+              <span class="caption-text">Contents:</span>
+            </p>
+            <ul class="current">
+              <li class="toctree-l1 current">
+                <a class="reference internal" href="modules.html">src</a>
+                <ul class="current">
+                  <li class="toctree-l2 current">
+                    <a class="reference internal" href="src.html"
+                      >src package</a
+                    >
+                    <ul class="current">
+                      <li class="toctree-l3 current">
+                        <a
+                          class="reference internal"
+                          href="src.html#subpackages"
+                          >Subpackages</a
+                        >
+                        <ul class="current">
+                          <li class="toctree-l4">
+                            <a
+                              class="reference internal"
+                              href="src.controller.html"
+                              >src.controller package</a
+                            >
+                          </li>
+                          <li class="toctree-l4 current">
+                            <a class="current reference internal" href="#"
+                              >src.model package</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="toctree-l3">
+                        <a class="reference internal" href="src.html#module-src"
+                          >Module contents</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <nav class="wy-nav-top" aria-label="Menu de navegação móvel">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simulador de Circuitos Elétricos</a>
+        </nav>
+
+        <div class="wy-nav-content">
+          <div class="rst-content">
+            <div role="navigation" aria-label="Navegação da página">
+              <ul class="wy-breadcrumbs">
+                <li>
+                  <a
+                    href="index.html"
+                    class="icon icon-home"
+                    aria-label="Home"
+                  ></a>
+                </li>
+                <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+                <li class="breadcrumb-item">
+                  <a href="src.html">src package</a>
+                </li>
+                <li class="breadcrumb-item active">src.model package</li>
+                <li class="wy-breadcrumbs-aside">
+                  <a href="_sources/src.model.rst.txt" rel="nofollow">
+                    Ver código-fonte da página</a
+                  >
+                </li>
+              </ul>
+              <hr />
+            </div>
+            <div
+              role="main"
+              class="document"
+              itemscope="itemscope"
+              itemtype="http://schema.org/Article"
+            >
+              <div itemprop="articleBody">
+                <section id="src-model-package">
+                  <h1>
+                    src.model package<a
+                      class="headerlink"
+                      href="#src-model-package"
+                      title="Link para este cabeçalho"
+                      ></a
+                    >
+                  </h1>
+                  <section id="subpackages">
+                    <h2>
+                      Subpackages<a
+                        class="headerlink"
+                        href="#subpackages"
+                        title="Link para este cabeçalho"
+                        ></a
+                      >
+                    </h2>
+                    <div class="toctree-wrapper compound">
+                      <ul>
+                        <li class="toctree-l1">
+                          <a
+                            class="reference internal"
+                            href="src.model.elementos.html"
+                            >src.model.elementos package</a
+                          >
+                          <ul>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#submodules"
+                                >Submodules</a
+                              >
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.ampOpIdeal"
+                                >src.model.elementos.ampOpIdeal module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.ampOpIdeal.AmpOpIdeal"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">AmpOpIdeal</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.ampOpIdeal.AmpOpIdeal.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >AmpOpIdeal.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.ampOpIdeal.AmpOpIdeal.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >AmpOpIdeal.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.ampOpIdeal.AmpOpIdeal.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >AmpOpIdeal.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.capacitor"
+                                >src.model.elementos.capacitor module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.capacitor.Capacitor"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">Capacitor</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.capacitor.Capacitor.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Capacitor.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.capacitor.Capacitor.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Capacitor.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.capacitor.Capacitor.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Capacitor.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.diodo"
+                                >src.model.elementos.diodo module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.diodo.Diodo"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">Diodo</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.diodo.Diodo.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Diodo.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.diodo.Diodo.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Diodo.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.diodo.Diodo.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Diodo.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.elementoCircuito"
+                                >src.model.elementos.elementoCircuito module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.elementoCircuito.ElementoCircuito"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >ElementoCircuito</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.elementoCircuito.ElementoCircuito.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ElementoCircuito.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.elementoCircuito.ElementoCircuito.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ElementoCircuito.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.elementoCircuito.ElementoCircuito.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ElementoCircuito.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteCorrenteControladaCorrente"
+                                >src.model.elementos.fonteCorrenteControladaCorrente
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaCorrente.FonteCorrenteControladaCorrente"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteCorrenteControladaCorrente</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaCorrente.FonteCorrenteControladaCorrente.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaCorrente.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaCorrente.FonteCorrenteControladaCorrente.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaCorrente.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaCorrente.FonteCorrenteControladaCorrente.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaCorrente.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteCorrenteControladaTensao"
+                                >src.model.elementos.fonteCorrenteControladaTensao
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaTensao.FonteCorrenteControladaTensao"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteCorrenteControladaTensao</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaTensao.FonteCorrenteControladaTensao.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaTensao.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaTensao.FonteCorrenteControladaTensao.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaTensao.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteControladaTensao.FonteCorrenteControladaTensao.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteControladaTensao.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteCorrenteDC"
+                                >src.model.elementos.fonteCorrenteDC module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteCorrenteDC.FonteCorrenteDC"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteCorrenteDC</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteDC.FonteCorrenteDC.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteDC.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteDC.FonteCorrenteDC.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteDC.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteDC.FonteCorrenteDC.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteDC.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteCorrentePulso"
+                                >src.model.elementos.fonteCorrentePulso
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteCorrentePulso.FonteCorrentePulso"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteCorrentePulso</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrentePulso.FonteCorrentePulso.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrentePulso.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrentePulso.FonteCorrentePulso.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrentePulso.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrentePulso.FonteCorrentePulso.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrentePulso.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteCorrenteSenoidal"
+                                >src.model.elementos.fonteCorrenteSenoidal
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteCorrenteSenoidal.FonteCorrenteSenoidal"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteCorrenteSenoidal</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteSenoidal.FonteCorrenteSenoidal.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteSenoidal.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteSenoidal.FonteCorrenteSenoidal.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteSenoidal.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteCorrenteSenoidal.FonteCorrenteSenoidal.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteCorrenteSenoidal.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteTensaoControladaCorrente"
+                                >src.model.elementos.fonteTensaoControladaCorrente
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaCorrente.FonteTensaoControladaCorrente"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteTensaoControladaCorrente</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaCorrente.FonteTensaoControladaCorrente.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaCorrente.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaCorrente.FonteTensaoControladaCorrente.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaCorrente.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaCorrente.FonteTensaoControladaCorrente.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaCorrente.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteTensaoControladaTensao"
+                                >src.model.elementos.fonteTensaoControladaTensao
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaTensao.FonteTensaoControladaTensao"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteTensaoControladaTensao</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaTensao.FonteTensaoControladaTensao.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaTensao.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaTensao.FonteTensaoControladaTensao.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaTensao.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoControladaTensao.FonteTensaoControladaTensao.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoControladaTensao.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteTensaoDC"
+                                >src.model.elementos.fonteTensaoDC module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteTensaoDC.FonteTensaoDC"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteTensaoDC</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoDC.FonteTensaoDC.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoDC.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoDC.FonteTensaoDC.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoDC.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoDC.FonteTensaoDC.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoDC.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteTensaoPulso"
+                                >src.model.elementos.fonteTensaoPulso module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteTensaoPulso.FonteTensaoPulso"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteTensaoPulso</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoPulso.FonteTensaoPulso.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoPulso.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoPulso.FonteTensaoPulso.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoPulso.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoPulso.FonteTensaoPulso.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoPulso.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.fonteTensaoSenoidal"
+                                >src.model.elementos.fonteTensaoSenoidal
+                                module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.fonteTensaoSenoidal.FonteTensaoSenoidal"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >FonteTensaoSenoidal</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoSenoidal.FonteTensaoSenoidal.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoSenoidal.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoSenoidal.FonteTensaoSenoidal.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoSenoidal.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.fonteTensaoSenoidal.FonteTensaoSenoidal.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >FonteTensaoSenoidal.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.indutor"
+                                >src.model.elementos.indutor module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.indutor.Indutor"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">Indutor</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.indutor.Indutor.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Indutor.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.indutor.Indutor.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Indutor.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.indutor.Indutor.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Indutor.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.mosfet"
+                                >src.model.elementos.mosfet module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.mosfet.Mosfet"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">Mosfet</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.mosfet.Mosfet.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Mosfet.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.mosfet.Mosfet.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Mosfet.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.mosfet.Mosfet.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Mosfet.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.resistor"
+                                >src.model.elementos.resistor module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.resistor.Resistor"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre">Resistor</span></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistor.Resistor.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Resistor.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistor.Resistor.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Resistor.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistor.Resistor.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >Resistor.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos.resistorNaoLinear"
+                                >src.model.elementos.resistorNaoLinear module</a
+                              >
+                              <ul>
+                                <li class="toctree-l3">
+                                  <a
+                                    class="reference internal"
+                                    href="src.model.elementos.html#src.model.elementos.resistorNaoLinear.ResistorNaoLinear"
+                                    ><code class="docutils literal notranslate"
+                                      ><span class="pre"
+                                        >ResistorNaoLinear</span
+                                      ></code
+                                    ></a
+                                  >
+                                  <ul>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistorNaoLinear.ResistorNaoLinear.estampa"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ResistorNaoLinear.estampa()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistorNaoLinear.ResistorNaoLinear.from_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ResistorNaoLinear.from_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                    <li class="toctree-l4">
+                                      <a
+                                        class="reference internal"
+                                        href="src.model.elementos.html#src.model.elementos.resistorNaoLinear.ResistorNaoLinear.to_nl"
+                                        ><code
+                                          class="docutils literal notranslate"
+                                          ><span class="pre"
+                                            >ResistorNaoLinear.to_nl()</span
+                                          ></code
+                                        ></a
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="toctree-l2">
+                              <a
+                                class="reference internal"
+                                href="src.model.elementos.html#module-src.model.elementos"
+                                >Module contents</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </section>
+                  <section id="submodules">
+                    <h2>
+                      Submodules<a
+                        class="headerlink"
+                        href="#submodules"
+                        title="Link para este cabeçalho"
+                        ></a
+                      >
+                    </h2>
+                  </section>
+                  <section id="module-src.model.circuito">
+                    <span id="src-model-circuito-module"></span>
+                    <h2>
+                      src.model.circuito module<a
+                        class="headerlink"
+                        href="#module-src.model.circuito"
+                        title="Link para este cabeçalho"
+                        ></a
+                      >
+                    </h2>
+                    <dl class="py class">
+                      <dt
+                        class="sig sig-object py"
+                        id="src.model.circuito.Circuito"
+                      >
+                        <em class="property"
+                          ><span class="k"><span class="pre">class</span></span
+                          ><span class="w"> </span></em
+                        ><span class="sig-prename descclassname"
+                          ><span class="pre">src.model.circuito.</span></span
+                        ><span class="sig-name descname"
+                          ><span class="pre">Circuito</span></span
+                        ><span class="sig-paren">(</span
+                        ><em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">elementos</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">qntNos</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">qntIncognitas</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">metodoIntegracao</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre"
+                              >possuiElementoNaoLinear</span
+                            ></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre">False</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">simulacao</span></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre">None</span></span
+                          ></em
+                        ><span class="sig-paren">)</span
+                        ><a
+                          class="headerlink"
+                          href="#src.model.circuito.Circuito"
+                          title="Link para esta definição"
+                          ></a
+                        >
+                      </dt>
+                      <dd>
+                        <p>
+                          Base:
+                          <code
+                            class="xref py py-class docutils literal notranslate"
+                            ><span class="pre">object</span></code
+                          >
+                        </p>
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.adiciona_componente"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre"
+                                >adiciona_componente</span
+                              ></span
+                            ><span class="sig-paren">(</span
+                            ><em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">componente</span></span
+                              ></em
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.adiciona_componente"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.calculaQntIncognitasENos"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre"
+                                >calculaQntIncognitasENos</span
+                              ></span
+                            ><span class="sig-paren">(</span
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.calculaQntIncognitasENos"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.calcularCircuitoNaoLinear"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre"
+                                >calcularCircuitoNaoLinear</span
+                              ></span
+                            ><span class="sig-paren">(</span
+                            ><em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">GnTemporal</span></span
+                              ></em
+                            >,
+                            <em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">ITemporal</span></span
+                              ></em
+                            >,
+                            <em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre"
+                                  >tensoesAnteriores</span
+                                ></span
+                              ></em
+                            >,
+                            <em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">tolerancia</span></span
+                              ></em
+                            >,
+                            <em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">qntIncognitas</span></span
+                              ></em
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.calcularCircuitoNaoLinear"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.inicializar_matrizes"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre"
+                                >inicializar_matrizes</span
+                              ></span
+                            ><span class="sig-paren">(</span
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.inicializar_matrizes"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.resolver"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">resolver</span></span
+                            ><span class="sig-paren">(</span
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.resolver"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Circuito.to_nl"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">to_nl</span></span
+                            ><span class="sig-paren">(</span
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Circuito.to_nl"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+                      </dd>
+                    </dl>
+
+                    <dl class="py class">
+                      <dt
+                        class="sig sig-object py"
+                        id="src.model.circuito.Metodo"
+                      >
+                        <em class="property"
+                          ><span class="k"><span class="pre">class</span></span
+                          ><span class="w"> </span></em
+                        ><span class="sig-prename descclassname"
+                          ><span class="pre">src.model.circuito.</span></span
+                        ><span class="sig-name descname"
+                          ><span class="pre">Metodo</span></span
+                        ><span class="sig-paren">(</span
+                        ><em class="sig-param"
+                          ><span class="o"><span class="pre">*</span></span
+                          ><span class="n"
+                            ><span class="pre">values</span></span
+                          ></em
+                        ><span class="sig-paren">)</span
+                        ><a
+                          class="headerlink"
+                          href="#src.model.circuito.Metodo"
+                          title="Link para esta definição"
+                          ></a
+                        >
+                      </dt>
+                      <dd>
+                        <p>
+                          Base:
+                          <code
+                            class="xref py py-class docutils literal notranslate"
+                            ><span class="pre">Enum</span></code
+                          >
+                        </p>
+                        <dl class="py attribute">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Metodo.BACKWARD_EULER"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">BACKWARD_EULER</span></span
+                            ><em class="property"
+                              ><span class="w"> </span
+                              ><span class="p"><span class="pre">=</span></span
+                              ><span class="w"> </span
+                              ><span class="pre">'BE'</span></em
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Metodo.BACKWARD_EULER"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py attribute">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Metodo.FORWARD_EULER"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">FORWARD_EULER</span></span
+                            ><em class="property"
+                              ><span class="w"> </span
+                              ><span class="p"><span class="pre">=</span></span
+                              ><span class="w"> </span
+                              ><span class="pre">'FE'</span></em
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Metodo.FORWARD_EULER"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py attribute">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.circuito.Metodo.TRAPEZOIDAL"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">TRAPEZOIDAL</span></span
+                            ><em class="property"
+                              ><span class="w"> </span
+                              ><span class="p"><span class="pre">=</span></span
+                              ><span class="w"> </span
+                              ><span class="pre">'TRAP'</span></em
+                            ><a
+                              class="headerlink"
+                              href="#src.model.circuito.Metodo.TRAPEZOIDAL"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+                      </dd>
+                    </dl>
+                  </section>
+                  <section id="module-src.model.simulacao">
+                    <span id="src-model-simulacao-module"></span>
+                    <h2>
+                      src.model.simulacao module<a
+                        class="headerlink"
+                        href="#module-src.model.simulacao"
+                        title="Link para este cabeçalho"
+                        ></a
+                      >
+                    </h2>
+                    <dl class="py class">
+                      <dt
+                        class="sig sig-object py"
+                        id="src.model.simulacao.Simulacao"
+                      >
+                        <em class="property"
+                          ><span class="k"><span class="pre">class</span></span
+                          ><span class="w"> </span></em
+                        ><span class="sig-prename descclassname"
+                          ><span class="pre">src.model.simulacao.</span></span
+                        ><span class="sig-name descname"
+                          ><span class="pre">Simulacao</span></span
+                        ><span class="sig-paren">(</span
+                        ><em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">tempoTotal</span></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre">0</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"><span class="pre">passo</span></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre">0</span></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">metodoIntegracao</span></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre"
+                              >Metodo.BACKWARD_EULER</span
+                            ></span
+                          ></em
+                        >,
+                        <em class="sig-param"
+                          ><span class="n"
+                            ><span class="pre">passosInternos</span></span
+                          ><span class="o"><span class="pre">=</span></span
+                          ><span class="default_value"
+                            ><span class="pre">0</span></span
+                          ></em
+                        ><span class="sig-paren">)</span
+                        ><a
+                          class="headerlink"
+                          href="#src.model.simulacao.Simulacao"
+                          title="Link para esta definição"
+                          ></a
+                        >
+                      </dt>
+                      <dd>
+                        <p>
+                          Base:
+                          <code
+                            class="xref py py-class docutils literal notranslate"
+                            ><span class="pre">object</span></code
+                          >
+                        </p>
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.simulacao.Simulacao.from_nl"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">from_nl</span></span
+                            ><span class="sig-paren">(</span
+                            ><em class="sig-param"
+                              ><span class="n"
+                                ><span class="pre">nl</span></span
+                              ></em
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.simulacao.Simulacao.from_nl"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt
+                            class="sig sig-object py"
+                            id="src.model.simulacao.Simulacao.to_nl"
+                          >
+                            <span class="sig-name descname"
+                              ><span class="pre">to_nl</span></span
+                            ><span class="sig-paren">(</span
+                            ><span class="sig-paren">)</span
+                            ><a
+                              class="headerlink"
+                              href="#src.model.simulacao.Simulacao.to_nl"
+                              title="Link para esta definição"
+                              ></a
+                            >
+                          </dt>
+                          <dd></dd>
+                        </dl>
+                      </dd>
+                    </dl>
+                  </section>
+                  <section id="module-src.model">
+                    <span id="module-contents"></span>
+                    <h2>
+                      Module contents<a
+                        class="headerlink"
+                        href="#module-src.model"
+                        title="Link para este cabeçalho"
+                        ></a
+                      >
+                    </h2>
+                  </section>
+                </section>
+              </div>
+            </div>
+            <footer>
+              <div
+                class="rst-footer-buttons"
+                role="navigation"
+                aria-label="Rodapé"
+              >
+                <a
+                  href="src.controller.html"
+                  class="btn btn-neutral float-left"
+                  title="src.controller package"
+                  accesskey="p"
+                  rel="prev"
+                  ><span
+                    class="fa fa-arrow-circle-left"
+                    aria-hidden="true"
+                  ></span>
+                  Anterior</a
+                >
+                <a
+                  href="src.model.elementos.html"
+                  class="btn btn-neutral float-right"
+                  title="src.model.elementos package"
+                  accesskey="n"
+                  rel="next"
+                  >Próximo
+                  <span
+                    class="fa fa-arrow-circle-right"
+                    aria-hidden="true"
+                  ></span
+                ></a>
+              </div>
+
+              <hr />
+
+              <div role="contentinfo">
+                <p>&#169; Direitos autorais 2025, Larissa Bral.</p>
+              </div>
+
+              Compilado com
+              <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+              <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+              fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+            </footer>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+      });
+    </script>
+  </body>
+</html>

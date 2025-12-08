@@ -50,11 +50,14 @@ def paginaAddComponente(painel):
             text_uic,
         ]
         if tempo_total.validate() and passo.validate() and passos_internos.validate():
-            simulacao.from_nl(nl)
-            sim_state.__setitem__("simulacao_configurada", True)
-            bloco_config_simulacao.value = not sim_state["simulacao_configurada"]
-            bloco_config_simulacao.update()
-            ui.notify("Simulação configurada com sucesso!", color="green")
+            try:
+                simulacao.from_nl(nl)
+                sim_state.__setitem__("simulacao_configurada", True)
+                bloco_config_simulacao.value = not sim_state["simulacao_configurada"]
+                bloco_config_simulacao.update()
+                ui.notify("Simulação configurada com sucesso!", color="green")
+            except Exception as e:
+                ui.notify(f"Erro: {e}", color="negative")
         else:
             ui.notify("Preencha todos os campos!", color="red")
 

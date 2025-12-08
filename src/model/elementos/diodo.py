@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.model.elementoCircuito import ElementoCircuito
+from src.model.elementos.elementoCircuito import ElementoCircuito
 
 
 class Diodo(ElementoCircuito):

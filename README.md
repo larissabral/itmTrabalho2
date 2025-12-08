@@ -1,20 +1,117 @@
 # Documentação
-Implementação do segundo trabalho da disciplina de ITM 2025.2
 
-## Conteúdo
+Implementação do segundo trabalho da disciplina de Instrumentação e Técnicas de Medidas - EEL710,
+do ano de 2025, segundo período, sob a supervisãoo técnica de João Victor da Fonseca Pinto, professor do DEL/UFRJ.
 
-A documentação deve incluir os seguintes itens:
+## 🔎 Visão Geral do Projeto
 
-- **Visão Geral do Projeto:** Uma descrição concisa do propósito do software e de suas principais funcionalidades.
+O projeto consiste no desenvolvimento de um software de protótipo para simular circuitos elétricos, fornecendo uma interface intuitiva e ferramentas robustas.
 
-- **Estrutura do Código:** Um diagrama ou descrição detalhada da arquitetura do software, explicando a função de cada módulo, classe ou arquivo.
+## 🧱 Estrutura do Código
 
-- **Instalação e Configuração:** Instruções claras e passo a passo para instalar e configurar o programa, incluindo as dependências necessárias.
+A arquitetura do sistema foi organizada em módulos para facilitar manutenção, expansão e compreensão. Abaixo está a descrição dos principais componentes:
 
-- **Uso e Exemplos:** Exemplos de uso prático do software, com trechos de código ou comandos que demonstrem como interagir com o protótipo.
+```text
+/src
+ ├── controller/
+ │    └── simulador.py
+ ├── model/
+ │    ├── simulacao.py
+ │    ├── circuito.py
+ │    └── elementos/
+ │          ├── base.py
+ │          ├── resistor.py
+ │          ├── capacitor.py
+ │          ├── indutor.py
+ │          └── ...
+ ├── view/
+ │    ├── components
+ │    │     └── header.py
+ │    ├── pages
+ │    │     ├── abas.py
+ │    │     ├── paginaAddComponente.py
+ │    │     └── páginaAddNetlist.py
+ │    └──especsNetlist.txt
+ └── tests/
+      ├── netlists
+      │     ├── chua.net
+      │     ├── netlist1.txt
+      │     └── ...
+      ├── resultados
+      │     ├── chua.sim
+      │     ├── resultado1.txt
+      │     └── ...
+      └──especsNetlist.txt
+```
 
-- **API (se aplicável):** Caso o protótipo inclua uma API, a documentação deve detalhar os endpoints, parâmetros de entrada, formatos de saída e códigos de erro.
+### **Descrição dos módulos**
 
-- **Testes:** Uma seção dedicada a descrever como executar os testes de continuidade implementados no projeto, explicando o objetivo de cada suíte de testes.
+- controller/ — Funções para receber as interações do usuário, processar a lógica de negócios, interagir com os modelos e retornar uma resposta.
 
-- **Diagrama de Classes:** A documentação do projeto deve incluir um diagrama de classes que ilustre a hierarquia, os atributos e os métodos das classes de elementos, validando o uso de herança e encapsulamento.
+- model/ — Contém toda a lógica do domínio, como simulação, montagem de matrizes, classes dos elementos, etc.
+
+- view/ — Interface gráfica (NiceGUI).
+
+- tests/ — Suítes de testes funcionais.
+
+## 🔧 Instalação e Configuração
+
+### 1. Pré-requisitos
+
+- Python 3.14.0
+
+- Pip
+
+- Dependências listadas em requirements.txt
+
+### 2. Instalação
+
+```bash
+ git clone https://github.com/larissabral/itmTrabalho2.git
+cd projeto
+pip install -r requirements.txt
+```
+
+### 3. Execução
+
+No diretório raiz do projeto:
+
+```bash
+python main.py
+```
+
+## ▶️ Uso
+
+### Via interface gráfica
+
+Acesse [Protótipo Simulador](https://itmtrabalho2-production.up.railway.app/) (ou [localhost](http://localhost:8080/) se estiver rodando localmente)
+
+- #### Simular por netlist (arquivo ou texto)
+
+![img.png](assets/images/telaAddNetlist.png)
+
+- #### Adicionar componentes para gerar netlist ou simular
+
+![img_1.png](assets/images/telaAddComponente.png)
+
+## 🧪 Testes
+
+Os testes estão localizados no diretório tests/.
+
+### Executando os testes
+
+```bash
+pytest -q
+```
+
+## 🧩 Diagrama de Classes
+
+![img_2.png](assets/images/classes_itmTrabalho2.png)
+
+Esse diagrama demonstra:
+
+- **Herança** entre elementos e ElementoBase
+
+- **Encapsulamento** com atributos internos
+
+- **Responsabilidades** centradas (cada classe faz apenas o que deve fazer)

@@ -1,20 +1,26 @@
-from src.model.ampOpIdeal import AmpOpIdeal
-from src.model.capacitor import Capacitor
 from src.model.circuito import Circuito, Metodo
-from src.model.diodo import Diodo
-from src.model.fonteCorrenteControladaCorrente import FonteCorrenteControladaCorrente
-from src.model.fonteCorrenteControladaTensao import FonteCorrenteControladaTensao
-from src.model.fonteCorrenteDC import FonteCorrenteDC
-from src.model.fonteCorrentePulso import FonteCorrentePulso
-from src.model.fonteCorrenteSenoidal import FonteCorrenteSenoidal
-from src.model.fonteTensaoControladaCorrente import FonteTensaoControladaCorrente
-from src.model.fonteTensaoControladaTensao import FonteTensaoControladaTensao
-from src.model.fonteTensaoDC import FonteTensaoDC
-from src.model.fonteTensaoPulso import FonteTensaoPulso
-from src.model.fonteTensaoSenoidal import FonteTensaoSenoidal
-from src.model.indutor import Indutor
-from src.model.resistor import Resistor
-from src.model.resistorNaoLinear import ResistorNaoLinear
+from src.model.elementos.ampOpIdeal import AmpOpIdeal
+from src.model.elementos.capacitor import Capacitor
+from src.model.elementos.diodo import Diodo
+from src.model.elementos.fonteCorrenteControladaCorrente import (
+    FonteCorrenteControladaCorrente,
+)
+from src.model.elementos.fonteCorrenteControladaTensao import (
+    FonteCorrenteControladaTensao,
+)
+from src.model.elementos.fonteCorrenteDC import FonteCorrenteDC
+from src.model.elementos.fonteCorrentePulso import FonteCorrentePulso
+from src.model.elementos.fonteCorrenteSenoidal import FonteCorrenteSenoidal
+from src.model.elementos.fonteTensaoControladaCorrente import (
+    FonteTensaoControladaCorrente,
+)
+from src.model.elementos.fonteTensaoControladaTensao import FonteTensaoControladaTensao
+from src.model.elementos.fonteTensaoDC import FonteTensaoDC
+from src.model.elementos.fonteTensaoPulso import FonteTensaoPulso
+from src.model.elementos.fonteTensaoSenoidal import FonteTensaoSenoidal
+from src.model.elementos.indutor import Indutor
+from src.model.elementos.resistor import Resistor
+from src.model.elementos.resistorNaoLinear import ResistorNaoLinear
 from src.model.simulacao import Simulacao
 
 

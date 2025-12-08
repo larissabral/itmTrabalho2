@@ -1,7 +1,7 @@
-from src.model.elementoCircuito import ElementoCircuito
+from src.model.elementos.elementoCircuito import ElementoCircuito
 
 
-class FonteTensaoPulso(ElementoCircuito):
+class FonteCorrentePulso(ElementoCircuito):
     def __init__(
         self,
         nome="",
@@ -46,7 +46,7 @@ class FonteTensaoPulso(ElementoCircuito):
             self.tempoLigado,
             self.periodo,
             self.numeroCiclos,
-        ]  # nome: V
+        ]  # nome: I
 
     def from_nl(self, nl):
         self.nome = nl[0]
@@ -69,8 +69,6 @@ class FonteTensaoPulso(ElementoCircuito):
         noA = self.noPositivo
         noB = self.noNegativo
 
-        qntNos = 0
-
         valor1 = self.valor1
         valor2 = self.valor2
         atraso = self.atraso
@@ -91,26 +89,20 @@ class FonteTensaoPulso(ElementoCircuito):
         tempo = (self.tempoAtual - atraso) % periodo
 
         if atraso >= self.tempoAtual:
-            tensao = valor1
+            corrente = valor1
 
         if tempo <= tempoSubida:
-            tensao = valor1 + (((valor1 - valor2) * tempo) / tempoSubida)
+            corrente = valor1 + (((valor1 - valor2) * tempo) / tempoSubida)
         elif tempo <= (tempoSubida + tempoLigado):
-            tensao = valor2
+            corrente = valor2
         elif tempo <= (tempoSubida + tempoLigado + tempoDescida):
-            tensao = valor2 - (
+            corrente = valor2 - (
                 ((valor2 - valor1) * (tempo - tempoLigado - tempoSubida)) / tempoDescida
             )
         else:
-            tensao = valor1
+            corrente = valor1
 
-        G[noA, qntNos + posicao] += 1
-        G[qntNos + posicao, noA] -= 1
-        G[noB, qntNos + posicao] -= 1
-        G[qntNos + posicao, noB] += 1
-
-        Ix[qntNos + posicao] -= tensao
-
-        posicao += 1
+        Ix[noA] -= corrente
+        Ix[noB] += corrente
 
         return G, Ix, posicao

@@ -1,7 +1,7 @@
-from src.model.elementoCircuito import ElementoCircuito
+from src.model.elementos.elementoCircuito import ElementoCircuito
 
 
-class FonteTensaoControladaCorrente(ElementoCircuito):
+class FonteTensaoControladaTensao(ElementoCircuito):
     def __init__(
         self,
         nome="",
@@ -9,23 +9,23 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
         noTensaoNegativo=0,
         noControlePositivo=0,
         noControleNegativo=0,
-        transresistencia=0,
+        ganhoTensao=0,
     ):
         super().__init__(nome, noTensaoPositivo, noTensaoNegativo)
         self.noTensaoPositivo = noTensaoPositivo
         self.noTensaoNegativo = noTensaoNegativo
         self.noControlePositivo = noControlePositivo
         self.noControleNegativo = noControleNegativo
-        self.transresistencia = transresistencia
+        self.ganhoTensao = ganhoTensao
 
     def to_nl(self):
         return [
-            self.nome,  # nome: H
+            self.nome,  # nome: E
             self.noTensaoPositivo,
             self.noTensaoNegativo,
             self.noControlePositivo,
             self.noControleNegativo,
-            self.transresistencia,
+            self.ganhoTensao,
         ]
 
     def from_nl(self, nl):
@@ -34,7 +34,7 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
         self.noTensaoNegativo = int(nl[2])
         self.noControlePositivo = int(nl[3])
         self.noControleNegativo = int(nl[4])
-        self.transresistencia = float(nl[5])
+        self.ganhoTensao = float(nl[5])
         return self
 
     def estampa(
@@ -48,18 +48,12 @@ class FonteTensaoControladaCorrente(ElementoCircuito):
         posicao += 1
 
         ix = qntNos + posicao
-        iy = qntNos + posicao + 1
 
-        G[noA, iy] += 1
-        G[noB, iy] -= 1
-        G[noC, ix] += 1
-        G[noD, ix] -= 1
-        G[ix, noC] -= 1
-        G[ix, noD] += 1
-        G[iy, noA] -= 1
-        G[iy, noB] += 1
-        G[iy, ix] += self.transresistencia
-
-        posicao += 1
+        G[noA, ix] += 1
+        G[noB, ix] -= 1
+        G[ix, noA] -= 1
+        G[ix, noB] += 1
+        G[ix, noC] += self.ganhoTensao
+        G[ix, noD] -= self.ganhoTensao
 
         return G, Ix, posicao

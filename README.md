@@ -136,3 +136,5 @@ Esse diagrama demonstra:
 - **Encapsulamento** com atributos internos
 
 - **Responsabilidades** centradas (cada classe faz apenas o que deve fazer)
+
+Obs: [Diagrama gerado com pyreverse](https://github.com/larissabral/itmTrabalho2/issues/3#issuecomment-3624568146)

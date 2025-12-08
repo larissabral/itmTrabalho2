@@ -14,49 +14,66 @@ Requisitos e especificações técnicas: [Trabalho 2](assets/Trabalho%202.pdf)
 A arquitetura do sistema foi organizada em módulos para facilitar manutenção, expansão e compreensão. Abaixo está a descrição dos principais componentes:
 
 ```text
-/src
- ├── controller/
- │    └── simulador.py
- ├── model/
- │    ├── simulacao.py
- │    ├── circuito.py
- │    └── elementos/
- │          ├── base.py
- │          ├── resistor.py
- │          ├── capacitor.py
- │          ├── indutor.py
- │          └── ...
- ├── view/
- │    ├── components
- │    │     └── header.py
- │    ├── pages
- │    │     ├── abas.py
- │    │     ├── paginaAddComponente.py
- │    │     └── páginaAddNetlist.py
- │    └──especsNetlist.txt
- └── tests/
-      ├── netlists
-      │     ├── chua.net
-      │     ├── netlist1.txt
-      │     └── ...
-      ├── resultados
-      │     ├── chua.sim
-      │     ├── resultado1.txt
-      │     └── ...
-      ├── test_chua.py
-      ├── test_netlist1.py
-      └── ...
+
+ ├── assets/
+ │    ├── images/
+ │    └── ...
+ ├── docs/
+ │    └── ...
+ ├── src/
+ │    ├── controller/
+ │    │    └── simulador.py
+ │    ├── model/
+ │    │    ├── simulacao.py
+ │    │    ├── circuito.py
+ │    │    └── elementos/
+ │    │          ├── base.py
+ │    │          ├── resistor.py
+ │    │          ├── capacitor.py
+ │    │          ├── indutor.py
+ │    │          └── ...
+ │    ├── view/
+ │    │    ├── components
+ │    │    │     └── header.py
+ │    │    ├── pages
+ │    │    │     ├── abas.py
+ │    │    │     ├── paginaAddComponente.py
+ │    │    │     └── páginaAddNetlist.py
+ │    │    └──especsNetlist.txt
+ │    └── tests/
+ │         ├── netlists
+ │         │     ├── chua.net
+ │         │     ├── netlist1.txt
+ │         │     └── ...
+ │         ├── resultados
+ │         │     ├── chua.sim
+ │         │     ├── resultado1.txt
+ │         │     └── ...
+ │         ├── test_chua.py
+ │         ├── test_netlist1.py
+ │         └── ...
+ ├── main.py
+ ├── README.md
+ ├── .gitignore
+ ├── requirements.txt
+ └── ...
 ```
 
 ### **Descrição dos módulos**
 
-- controller/ — Funções para receber as interações do usuário, processar a lógica de negócios, interagir com os modelos e retornar uma resposta.
+- assets/ - Arquivos estáticos auxiliares.
 
-- model/ — Contém toda a lógica do domínio, como simulação, montagem de matrizes, classes dos elementos, etc.
+- docs/ - Documentação do código usando Sphinx.
+  - Acessar documentação: [HTML](docs/build/html/index.html)
 
-- view/ — Interface gráfica (NiceGUI).
+- src/ - Código-fonte principal da aplicação.
+  - controller/ - Funções para receber as interações do usuário, processar a lógica de negócios, interagir com os modelos e retornar uma resposta.
 
-- tests/ — Suítes de testes funcionais.
+  - model/ - Contém toda a lógica do domínio, como simulação, montagem de matrizes, classes dos elementos, etc.
+
+  - view/ - Interface gráfica (NiceGUI).
+
+  - tests/ - Suítes de testes funcionais.
 
 ## 🔧 Instalação e Configuração
 

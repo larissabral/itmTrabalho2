@@ -43,7 +43,9 @@ A arquitetura do sistema foi organizada em módulos para facilitar manutenção,
       │     ├── chua.sim
       │     ├── resultado1.txt
       │     └── ...
-      └──especsNetlist.txt
+      ├── test_chua.py
+      ├── test_netlist1.py
+      └── ...
 ```
 
 ### **Descrição dos módulos**

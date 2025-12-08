@@ -106,9 +106,7 @@ pytest -q
 
 ## 🧩 Diagrama de Classes
 
-<div style="width:8000px; overflow:auto; ">
-  <img src="assets/images/classes_itmTrabalho2.png" alt="Exemplo" style="width:8000px;">
-</div>
+![img_2.png](assets/images/classes_itmTrabalho2.png)
 
 Esse diagrama demonstra:
 

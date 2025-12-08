@@ -420,14 +420,11 @@ def gerar_netlist_texto():
     if not circuito.elementos:
         ui.notify("Adicione componentes para gerar netlist!", color="red")
     else:
-        netlist = []
         circuito.calculaQntIncognitasENos()
-        netlist.append([circuito.qntNos])
+        circuito.simulacao = simulacao
+        netlist = circuito.to_nl()
 
-        for componente in circuito.elementos:
-            netlist.append(componente.to_nl())
-
-        netlist.append(simulacao.to_nl())
+        print(netlist)
 
         baixa_netlist(netlist)
 
@@ -442,8 +439,8 @@ def simular_circuito():
         else:
             ui.notify("Simulação em andamento...")
             try:
-                circuito.calculaQntIncognitasENos()
-                resultado = circuito.resolver(simulacao)
+                circuito.simulacao = simulacao
+                resultado = circuito.resolver()
                 resultado = resultado.transpose()
                 baixa_resultado(resultado)
 

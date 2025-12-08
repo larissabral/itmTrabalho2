@@ -10,7 +10,8 @@ from src.controller.simulador import Simulador
 
 def paginaAddNetlist(painel):
     base_dir = Path(__file__).resolve().parents[2]
-    caminho_arquivo = os.path.join(base_dir, "view/especsNetlist.txt")
+    caminho_arquivo_especs = os.path.join(base_dir, "view/especsNetlist.txt")
+    caminho_arquivo_exemplo = os.path.join(base_dir, "view/exemploNetlist.txt")
 
     def ler_conteudo_arquivo(nomeArquivo):
         try:
@@ -23,9 +24,17 @@ def paginaAddNetlist(painel):
 
     with ui.dialog() as modal_especs:
         with ui.card():
-            texto_modal_especs = ler_conteudo_arquivo(caminho_arquivo)
+            texto_modal_especs = ler_conteudo_arquivo(caminho_arquivo_especs)
             ui.markdown(texto_modal_especs)
             ui.button("Fechar", on_click=modal_especs.close).classes(
+                "w-full justify-center"
+            )
+
+    with ui.dialog() as modal_exemplo:
+        with ui.card():
+            texto_modal_exemplo = ler_conteudo_arquivo(caminho_arquivo_exemplo)
+            ui.markdown(texto_modal_exemplo)
+            ui.button("Fechar", on_click=modal_exemplo.close).classes(
                 "w-full justify-center"
             )
 
@@ -36,16 +45,21 @@ def paginaAddNetlist(painel):
             "text-lg text-gray-600 text-center"
         )
         ui.button("Especificações da netlist", on_click=modal_especs.open)
+        ui.button("Exemplo de netlist", on_click=modal_exemplo.open)
 
     ui.element("div").classes("h-[50px]")
 
     with ui.row().classes("w-full justify-center"):
         with ui.card():
+            ui.tooltip("Atenção: São permitidos apenas arquivos .txt")
             ui.label("Carregar arquivo:").classes("text-lg font-bold")
             ui.upload(
                 max_files=1,
                 auto_upload=True,
                 on_upload=lambda e: submeter_netlist_arquivo(e),
+                on_rejected=lambda: ui.notify(
+                    "Arquivo não permitido! Adicione arquivo .txt.", color="negative"
+                ),
             ).classes("border p-4 rounded-md").props('accept=".txt"')
 
         ui.element("div").classes("w-[30px]")
@@ -53,12 +67,10 @@ def paginaAddNetlist(painel):
         ui.element("div").classes("w-[30px]")
 
         with ui.card():
-            ui.label("Ou copiar netlist:").classes("text-lg font-bold mt-4")
+            ui.label("Escrever netlist:").classes("text-lg font-bold mt-4")
             texto = ui.textarea(placeholder="Digite aqui sua netlist...").classes(
                 "w-full h-40 border rounded-md p-2"
             )
-
-            # TODO: verificar texto vazio
 
             ui.button(
                 "Submeter", on_click=lambda: submeter_netlist_texto(texto.value)

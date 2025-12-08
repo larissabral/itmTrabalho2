@@ -1,4 +1,4 @@
-from src.model.elementoCircuito import ElementoCircuito
+from src.model.elementos.elementoCircuito import ElementoCircuito
 
 
 class AmpOpIdeal(ElementoCircuito):

@@ -1,0 +1,10 @@
+src.tests.resultados package
+============================
+
+Module contents
+---------------
+
+.. automodule:: src.tests.resultados
+   :members:
+   :show-inheritance:
+   :undoc-members:

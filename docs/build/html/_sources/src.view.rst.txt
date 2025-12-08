@@ -1,0 +1,19 @@
+src.view package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.view.components
+   src.view.pages
+
+Module contents
+---------------
+
+.. automodule:: src.view
+   :members:
+   :show-inheritance:
+   :undoc-members:

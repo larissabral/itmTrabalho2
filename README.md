@@ -7,6 +7,8 @@ do ano de 2025, segundo período, sob a supervisãoo técnica de João Victor da
 
 O projeto consiste no desenvolvimento de um software de protótipo para simular circuitos elétricos, fornecendo uma interface intuitiva e ferramentas robustas.
 
+Requisitos e especificações técnicas: [Trabalho 2](assets/Trabalho%202.pdf)
+
 ## 🧱 Estrutura do Código
 
 A arquitetura do sistema foi organizada em módulos para facilitar manutenção, expansão e compreensão. Abaixo está a descrição dos principais componentes:

@@ -1,0 +1,134 @@
+src.tests package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.tests.netlists
+   src.tests.resultados
+
+Submodules
+----------
+
+src.tests.test\_chua module
+---------------------------
+
+.. automodule:: src.tests.test_chua
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_dc\_source module
+---------------------------------
+
+.. automodule:: src.tests.test_dc_source
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_example module
+------------------------------
+
+.. automodule:: src.tests.test_example
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_lc module
+-------------------------
+
+.. automodule:: src.tests.test_lc
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist1 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist1
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist2 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist2
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist3 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist3
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist4 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist4
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist5 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist5
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_netlist6 module
+-------------------------------
+
+.. automodule:: src.tests.test_netlist6
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_opamp\_rectifier module
+---------------------------------------
+
+.. automodule:: src.tests.test_opamp_rectifier
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_oscilator module
+--------------------------------
+
+.. automodule:: src.tests.test_oscilator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_pulse module
+----------------------------
+
+.. automodule:: src.tests.test_pulse
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.tests.test\_sinusoidal module
+---------------------------------
+
+.. automodule:: src.tests.test_sinusoidal
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: src.tests
+   :members:
+   :show-inheritance:
+   :undoc-members:

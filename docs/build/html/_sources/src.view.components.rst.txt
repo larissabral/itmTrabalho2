@@ -1,0 +1,21 @@
+src.view.components package
+===========================
+
+Submodules
+----------
+
+src.view.components.header module
+---------------------------------
+
+.. automodule:: src.view.components.header
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: src.view.components
+   :members:
+   :show-inheritance:
+   :undoc-members:

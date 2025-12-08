@@ -26,6 +26,10 @@ class Simulacao:
     def from_nl(self, nl):
         self.tempoTotal = float(nl[1])
         self.passo = float(nl[2])
-        self.passosInternos = int(nl[4])
-        if self.metodoIntegracao != Metodo.BACKWARD_EULER:
-            raise Exception("Metodo de simulacao não implementado")
+        self.passosInternos = float(nl[4])
+        self.metodoIntegracao = nl[3]
+        if self.metodoIntegracao != Metodo.BACKWARD_EULER.value:
+            raise Exception(
+                "Metodo de simulacao não implementado: " + self.metodoIntegracao
+            )
+        return self

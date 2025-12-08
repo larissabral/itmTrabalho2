@@ -34,7 +34,8 @@ class FonteTensaoControladaTensao(ElementoCircuito):
         self.noTensaoNegativo = int(nl[2])
         self.noControlePositivo = int(nl[3])
         self.noControleNegativo = int(nl[4])
-        self.ganhoTensao = int(nl[5])
+        self.ganhoTensao = float(nl[5])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

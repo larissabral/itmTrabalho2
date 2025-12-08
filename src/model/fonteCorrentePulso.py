@@ -52,7 +52,7 @@ class FonteCorrentePulso(ElementoCircuito):
         self.nome = nl[0]
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
-        self.tipoFonte = int(nl[3])
+        self.tipoFonte = nl[3]
         self.valor1 = float(nl[4])
         self.valor2 = float(nl[5])
         self.atraso = float(nl[6])
@@ -61,6 +61,7 @@ class FonteCorrentePulso(ElementoCircuito):
         self.tempoLigado = float(nl[9])
         self.periodo = float(nl[10])
         self.numeroCiclos = float(nl[11])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

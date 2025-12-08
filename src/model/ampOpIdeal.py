@@ -2,7 +2,7 @@ from src.model.elementoCircuito import ElementoCircuito
 
 
 class AmpOpIdeal(ElementoCircuito):
-    def __init__(self, nome, noPositivo, noNegativo, noSaida):
+    def __init__(self, nome="", noPositivo=0, noNegativo=0, noSaida=0):
         super().__init__(nome, noPositivo, noNegativo)
         self.noSaida = noSaida
 
@@ -14,6 +14,7 @@ class AmpOpIdeal(ElementoCircuito):
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
         self.noSaida = int(nl[3])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

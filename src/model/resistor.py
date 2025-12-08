@@ -19,6 +19,7 @@ class Resistor(ElementoCircuito):
         self.noPositivo = int(nl[1])
         self.noNegativo = int(nl[2])
         self.resistencia = float(nl[3])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

@@ -17,18 +17,23 @@ class Circuito:
         qntIncognitas,
         metodoIntegracao,
         possuiElementoNaoLinear=False,
+        simulacao=None,
     ):
         self.possuiElementoNaoLinear = possuiElementoNaoLinear
         self.elementos = elementos
         self.qntNos = qntNos
         self.qntIncognitas = qntIncognitas
         self.metodoIntegracao = metodoIntegracao
+        self.simulacao = simulacao
 
-    def to_nl(self) -> str:
-        netlist = f"{self.qntNos}\n"
-        for elemento in self.elementos:
-            if hasattr(elemento, "to_nl"):
-                netlist += elemento.to_nl() + "\n"
+    def to_nl(self):
+        netlist = [[self.qntNos]]
+
+        for componente in self.elementos:
+            netlist.append(componente.to_nl())
+
+        netlist.append(self.simulacao.to_nl())
+
         return netlist
 
     def adiciona_componente(self, componente):
@@ -42,9 +47,14 @@ class Circuito:
 
         return G, Ix
 
-    def resolver(self, simulacao):
+    def resolver(self):
+        if self.qntNos == 0:
+            self.calculaQntIncognitasENos()
+
         qntIncognitas = self.qntIncognitas
         qntNos = self.qntNos
+
+        simulacao = self.simulacao
 
         Gn, Ix = self.inicializar_matrizes()
         posicao = 0
@@ -57,7 +67,7 @@ class Circuito:
 
         tempo = np.arange(0, quantidadePontos) * passo
 
-        tensoesAnteriores = []
+        tensoesAnteriores = np.zeros(qntNos)
 
         resultados = np.zeros([quantidadePontos, qntNos])
 
@@ -119,7 +129,7 @@ class Circuito:
     def calcularCircuitoNaoLinear(
         self, GnTemporal, ITemporal, tensoesAnteriores, tolerancia, qntIncognitas
     ):
-        iteracoes = 1000
+        iteracoes = 20
 
         matriz, vetor = np.copy(GnTemporal), np.copy(ITemporal)
 
@@ -127,7 +137,7 @@ class Circuito:
             for elemento in self.elementos:
                 if hasattr(elemento, "isNaoLinear"):
                     matriz, vetor, posicao = elemento.estampa(
-                        matriz, vetor, 0, [], [], 0, self.qntNos
+                        matriz, vetor, 0, tensoesAnteriores, [], 0, self.qntNos
                     )
 
             resultadoParcial = np.linalg.solve(matriz[1:, 1:], vetor[1:])
@@ -144,3 +154,40 @@ class Circuito:
             matriz, vetor = np.copy(GnTemporal), np.copy(ITemporal)
 
         return np.linalg.solve(matriz[1:, 1:], vetor[1:])
+
+    def calculaQntIncognitasENos(self):
+        listaNos = []
+        qntIncognitas = 0
+        qntNos = 0
+
+        for elemento in self.elementos:
+            linha = elemento.to_nl()
+            listaNos.append(linha[1])
+            listaNos.append(linha[2])
+
+            if (
+                linha[0].startswith("G")
+                or linha[0].startswith("H")
+                or linha[0].startswith("F")
+                or linha[0].startswith("E")
+            ):
+                listaNos.append(linha[3])
+                listaNos.append(linha[4])
+
+            if (
+                linha[0].startswith("V")
+                or linha[0].startswith("E")
+                or linha[0].startswith("F")
+                or linha[0].startswith("L")
+            ):
+                qntIncognitas = qntIncognitas + 1
+
+            if linha[0].startswith("H"):
+                qntIncognitas = qntIncognitas + 2
+
+        for val in listaNos:
+            if qntNos < int(val):
+                qntNos = int(val)
+
+        self.qntNos = qntNos
+        self.qntIncognitas = qntIncognitas

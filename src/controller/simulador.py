@@ -1,3 +1,4 @@
+from src.model.ampOpIdeal import AmpOpIdeal
 from src.model.capacitor import Capacitor
 from src.model.circuito import Circuito, Metodo
 from src.model.diodo import Diodo
@@ -45,34 +46,38 @@ class Simulador:
 
         linhas = netlist.readlines()
 
+        indice = 0
         qntNos = 0
-        if not linhas[0].startswith("*") and not linhas[0].startswith("\n"):
-            qntNos = int(linhas[0][0])
+        while linhas:
+            if not linhas[indice].startswith("*") and not linhas[0].startswith("\n"):
+                qntNos = int(linhas[indice][0])
+                break
+            indice += 1
 
         qntIncognitas = qntIncognitasCircuito(linhas)
 
         circuito = Circuito([], qntNos, qntIncognitas, Metodo.BACKWARD_EULER)
 
         simulacao = Simulacao()
-        indice = -1
-        while linhas:
-            if linhas[indice].startswith(".TRAN"):
-                simulacao.from_nl(linhas[indice])
-            else:
-                indice -= 1
 
-        for linha in linhas:
+        print("Simulação configurada. Implementando elementos...")
+
+        for linha in linhas[indice + 1 :]:
             if not linha.startswith("*") and not linha.startswith("\n"):
+
                 if linha.endswith("\n"):
                     linha = linha.replace("\n", "")
+
                 linha = linha.split(" ")
+
                 elemento = linha[0]
+
                 if elemento.startswith("R"):
                     circuito.adiciona_componente(Resistor().from_nl(linha))
-                if elemento.startswith("N"):
+                elif elemento.startswith("N"):
                     circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(ResistorNaoLinear().from_nl(linha))
-                if elemento.startswith("I"):
+                elif elemento.startswith("I"):
                     if linha[3] == "DC":
                         circuito.adiciona_componente(FonteCorrenteDC().from_nl(linha))
                     elif linha[3] == "SIN":
@@ -83,7 +88,7 @@ class Simulador:
                         circuito.adiciona_componente(
                             FonteCorrentePulso().from_nl(linha)
                         )
-                if elemento.startswith("V"):
+                elif elemento.startswith("V"):
                     if linha[3] == "DC":
                         circuito.adiciona_componente(FonteTensaoDC().from_nl(linha))
                     elif linha[3] == "SIN":
@@ -92,31 +97,43 @@ class Simulador:
                         )
                     elif linha[3] == "PULSE":
                         circuito.adiciona_componente(FonteTensaoPulso().from_nl(linha))
-                if elemento.startswith("G"):
+                elif elemento.startswith("G"):
                     circuito.adiciona_componente(
                         FonteCorrenteControladaTensao().from_nl(linha)
                     )
-                if elemento.startswith("F"):
+                elif elemento.startswith("F"):
                     circuito.adiciona_componente(
                         FonteCorrenteControladaCorrente().from_nl(linha)
                     )
-                if elemento.startswith("E"):
+                elif elemento.startswith("E"):
                     circuito.adiciona_componente(
                         FonteTensaoControladaTensao().from_nl(linha)
                     )
-                if elemento.startswith("H"):
+                elif elemento.startswith("H"):
                     circuito.adiciona_componente(
                         FonteTensaoControladaCorrente().from_nl(linha)
                     )
-                if elemento.startswith("C"):
+                elif elemento.startswith("C"):
                     circuito.adiciona_componente(Capacitor().from_nl(linha))
-                if elemento.startswith("L"):
+                elif elemento.startswith("L"):
                     circuito.adiciona_componente(Indutor().from_nl(linha))
-                if elemento.startswith("D"):
+                elif elemento.startswith("O"):
+                    circuito.adiciona_componente(AmpOpIdeal().from_nl(linha))
+                elif elemento.startswith("D"):
                     circuito.possuiElementoNaoLinear = True
                     circuito.adiciona_componente(Diodo().from_nl(linha))
+                elif elemento.startswith(".TRAN"):
+                    circuito.simulacao = simulacao.from_nl(linha)
+                else:
+                    raise ValueError(
+                        f"Componente não implementado ou não reconhecido: {elemento}"
+                    )
 
-        resultados = circuito.resolver(simulacao)
+        print("Elementos adicionados. Resolvendo circuito...")
+
+        resultados = circuito.resolver()
+
+        print("Circuito resolvido.")
 
         resultados = resultados.transpose()
 

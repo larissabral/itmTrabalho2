@@ -57,6 +57,7 @@ class ResistorNaoLinear(ElementoCircuito):
         self.i3 = float(nl[8])
         self.v4 = float(nl[9])
         self.i4 = float(nl[10])
+        return self
 
     def estampa(
         self, G, Ix, deltaT, tensoesAnteriores, correntesAnteriores, posicao, qntNos

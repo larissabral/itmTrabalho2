@@ -141,6 +141,4 @@ class Simulador:
 
         print("Circuito resolvido.")
 
-        resultados = resultados.transpose()
-
         return resultados

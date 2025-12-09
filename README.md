@@ -9,6 +9,8 @@ O projeto consiste no desenvolvimento de um software de protótipo para simular 
 
 Requisitos e especificações técnicas: [Trabalho 2](assets/Trabalho%202.pdf)
 
+Apresentação do projeto: [Slides Apresentação](assets/Apresentação%20Projeto%20ITM%202025.2.pdf)
+
 ## 🧱 Estrutura do Código
 
 A arquitetura do sistema foi organizada em módulos para facilitar manutenção, expansão e compreensão. Abaixo está a descrição dos principais componentes:

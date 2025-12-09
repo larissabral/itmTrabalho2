@@ -11,4 +11,4 @@ def main_page():
     abas()
 
 
-ui.run(port=8080, reload=False)
+ui.run(port=8080)
